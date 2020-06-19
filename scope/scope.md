@@ -1,5 +1,3 @@
-# Compilation
-
 ## Lexing
 
 Any snippet of JavaScript has to be compiled before (usually right before!) it's executed.
