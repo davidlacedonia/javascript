@@ -16,7 +16,7 @@ If the Engine eventually finds the variable, it assings the value 2 to it, if no
 
 ## LHS/RHS
 
-**LHS:**: Find to assign to it
+**LHS:** Find to assign to it.
 Look-up is done when a variable appears on the lefthand side of an assignment operation.
 (Who's the target of the assignment?)
 For example: trying to find the variable container itself, so that it can assign.
@@ -24,7 +24,7 @@ For example: trying to find the variable container itself, so that it can assign
   a = 2;
 ```
 
-**RHS:** Find to get the value
+**RHS:** Find to get the value.
 Is done when a variable appears on the righthand side of an assignment operation.
 (Who's the source of the assignment?)
 For example: means 'go get the value of...'
@@ -32,5 +32,20 @@ For example: means 'go get the value of...'
   console.log(a)
 ```
 
-__Note: the subtle but important difference is that Compiler handels both the declaration and the value definition during code-generation.__
+_Note: the subtle but important difference is that Compiler handels both the declaration and the value definition during code-generation._
+
+## Nested scope
+
+If a variable cannot be found in the immediate scope, Engine consults the next outercontaining scope, continuing until is found or until the outermost (a.k.a., global) scope has been reached.
+
+## Errors
+
+There is a difference betwwen LHS and RHS.
+They behave differently in the circumstance where the variable has not yet been declared (not found in any scope).
+
+It the look-up fails to ever find a variable:
+RHS: results in a _ReferenceError_ being throw by the engine.
+LHS: creates the variable in the global scope (if not in Strict Mode).
+
+Strict Mode was added in ES5, and it disallows the automatic/implicit global variable creation. So in this case, the Engine would throw a ReferenceError similiarly to the RHS case.
 
