@@ -18,6 +18,7 @@ If the Engine eventually finds the variable, it assings the value 2 to it, if no
 
 **LHS:** Find to assign to it.
 Look-up is done when a variable appears on the lefthand side of an assignment operation.
+Can ocurr weither with the = operator or by passing arguments (assign to) function parameters.
 (Who's the target of the assignment?)
 For example: trying to find the variable container itself, so that it can assign.
 ```js
@@ -40,10 +41,11 @@ If a variable cannot be found in the immediate scope, Engine consults the next o
 
 ## Errors
 
-There is a difference betwwen LHS and RHS.
+There is a difference betweeen LHS and RHS.
 They behave differently in the circumstance where the variable has not yet been declared (not found in any scope).
 
 It the look-up fails to ever find a variable:
+
 RHS: results in a _ReferenceError_ being throw by the engine.
 LHS: creates the variable in the global scope (if not in Strict Mode).
 
