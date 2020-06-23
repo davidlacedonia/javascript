@@ -30,3 +30,8 @@ with is typically explained as a shorthand for making multiple property referenc
 Takes an object, one that has zero or more properties, and treats that object as if it is a wholly separate lexical scope, and thus the object's properties are treated as lexically defined identifiers in that scope.
 A normal var declaration inside the __with__ block will not be scoped to that __with__ block, but instead the containing function scope.
 Creates a while new lexical scope out of thin air, from the object you pass to it.
+
+### Performance
+
+The javascript engine has a number of performance optimizations, such as pedetermine where all the variable and functions declarations are, so that it takes less effor to resolve idenrifiers during execution.
+But both __eval__ and __with__ cheats lexical scope, so the engine has to assume that all its awareness of identifier location may be invalid. So code runs slower.
