@@ -12,4 +12,4 @@ function foo() {
 
 foo();
 
-// this can be solved, by declareing anothe variable inside of bar
+// this can be solved, by declaring another variable inside of bar
