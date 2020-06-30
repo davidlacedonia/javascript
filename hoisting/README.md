@@ -17,3 +17,12 @@ The first statement, the declaration, is processed during the compilation phase.
 Hoisting is per scope.
 
 Function declarations are hoisted, but function expressions are not.
+
+### Functions first
+
+Functions are hoisted first, and then variables.
+And duplicate declarations are ignored, so the function declaration will win.
+
+While multiple/duplicate var declarations are effectibely ignored, subsequent function declarations do override previous ones.
+
+Functions declarations that appear inside of normal blocks typically hoists to the enclosing scope.

@@ -43,7 +43,7 @@
 }
 
 {
-  foo();
+  foo(); // b
 
   function foo() {
     console.log('a');
