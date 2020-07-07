@@ -1,5 +1,7 @@
 # THIS
 
+Binding made for each function invocation, based entirely on its call-site.
+
 It's a special identifier keyword that's automatically defined in the scope of every function. Provides a more elegant way of implicitly passing along an object reference.
 
 _this_ does not refers, in any way, to the function's lexical scope.
