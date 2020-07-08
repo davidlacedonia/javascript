@@ -5,12 +5,11 @@
  */
 (function defaul() {
   function foo() {
-    "use non strict";
     console.log(this.a);
   }
 
   var a = 2;
-  foo();
+  foo(); // undefined
 })();
 
 /**
@@ -117,5 +116,19 @@
   };
 
   var fn = foo.bind(obj);
-  fn();
+  fn(); // 5
+})();
+
+/**
+ * New binding.
+ *
+ * The new constructed object is set as the _this_
+ */
+(function newBinding() {
+  function foo(a) {
+    this.a = a;
+  }
+
+  const bar = new foo(6);
+  console.log(bar.a); // 6
 })();
