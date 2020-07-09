@@ -34,7 +34,7 @@ It's a common misstatement that 'everything in JS is an object'.
 By contrast, there are a few special object subtypes, which we can refer to as _complex primitives_.
 
 _function_ is a subtype of object, is _first class_ in that they are basically just normal objects, and so they can be handled like any other plain objet.
-Arrays are also a form of ovjects, with exta behavior.
+Arrays are also a form of objects, with extra behavior.
 
 ## Built in objects
 
@@ -60,17 +60,17 @@ typeof strObject; // 'object'
 strObject instanceof String; // true
 ```
 
-To perform opetations on primitives, such as checking its length, accesing its individual character contenct, etc., a String object is required. Luckily the language automatically coerces a string primitive to a String object when necessary.
+To perform opetations on primitives, such as checking its length, accesing its individual character content, etc., a String object is required. Luckily the language automatically coerces a string primitive to a String object when necessary.
 
-Objects, Arrays, Functions, and RegExps are all objectes refardless of whether the literal or constructed form is used.
+Objects, Arrays, Functions, and RegExps are all objectes regardless of whether the literal or constructed form is used.
 
 ## Contents
 
-The contents of an object consiste of values stored at specifically named _locations_, which we call properties. This are not actually stored inside the object, is merely an appearance. Which is stored in the contianer are these property names, which act as pointers (technically references) to where the values are stored.
+The contents of an object consist of values stored at specifically named _locations_, which we call properties. This are not actually stored inside the object, is merely an appearance. Which is stored in the container are these property names, which act as pointers (technically references) to where the values are stored.
 
 ## Computed property names
 
-In ES^ you can specify an expression, surrounded by a _[]_ pair
+In ES6 you can specify an expression, surrounded by a _[]_ pair
 
 ```js
 var prefix = 'foo';
@@ -83,7 +83,7 @@ obj[prefix + 'bar']; // hello
 ## Arrays
 
 Arrays are objects, so even though each index is a positive integer, you can also add properties onto the array, and so use it as a plain key/value object. This is a bad idea because arrays have behavior and optimizations specific to their intended use.
-Be carefull: if you try to add a property to an array, but the property name looks like a number, it will end up insttead as a numeric index, thus modifiying the array contents.
+Be carefull: if you try to add a property to an array, but the property name looks like a number, it will end up instead as a numeric index, thus modifiying the array contents.
 
 ```js
   var arr = ['a', 'b'];
@@ -94,7 +94,7 @@ Be carefull: if you try to add a property to an array, but the property name loo
 
 ## Duplicating objects
 
-_Object.assign(..)_ takes a target object as its first parameter, and one or more soure objects as its subsequent parameters. It iterates over all the _enumerable_, _owned keys_ on the _source_ object(s) and copies them (via _ assignment only) to the target. It also returns the target.
+_Object.assign(..)_ takes a target object as its first parameter, and one or more source objects as its subsequent parameters. It iterates over all the _enumerable_, _owned keys_ on the _source_ object(s) and copies them (via assignment only) to the target. It also returns the target.
 
 ```js
 var obj = Object.assign({}, myObject);
