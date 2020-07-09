@@ -91,3 +91,11 @@ Be carefull: if you try to add a property to an array, but the property name loo
   arr.length; // 3
   arr[2]; // 'c'
 ```
+
+## Duplicating objects
+
+_Object.assign(..)_ takes a target object as its first parameter, and one or more soure objects as its subsequent parameters. It iterates over all the _enumerable_, _owned keys_ on the _source_ object(s) and copies them (via _ assignment only) to the target. It also returns the target.
+
+```js
+var obj = Object.assign({}, myObject);
+```
