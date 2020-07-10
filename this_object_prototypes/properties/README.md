@@ -16,11 +16,11 @@ Object.defineProperty(myObject, "a", {
 ### Writable
 
 The ability for you to change the value of a property is controlled by _writable_.
-Modifications on the value will silenlty fail. In stric mode would throw a _TypeError_.
+Modifications on the value will silently fail. In _stric mode_ would throw a _TypeError_.
 
 ### Configurable
 
-When false, prevents changes using `Object.defineProperty(...)`
+When false, prevents changes using `Object.defineProperty(..)`.
 Throws _TypeError_ when trying to change the descriptor definition of a nonconfigurable property.
 Also prevents the ability to use the _delete_ operator to remove an existing property.
 
@@ -42,7 +42,7 @@ Takes an oject and essentially calls _Object.preventExtensions(..)_ on it, but a
 
 ### Freeze
 
-Creates a frozen object, which means it takes an exiting object and essentially calls `Object.seal(..)` on it, but also marks all 'data accessor' properties as _writable: false_, so that their value scannot be changed.
+Creates a frozen object, which means it takes an exiting object and essentially calls `Object.seal(..)` on it, but also marks all data accessor' properties as _writable: false_, so that their values cannot be changed.
 
 ## Getters and setters
 
