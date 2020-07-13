@@ -63,3 +63,34 @@ When you define a property to have either a getter or a setter or both, its defi
   myObject.a = 2;
   myObject.a; // 4
 ```
+
+## Existence
+
+We can ask an object if it has a certain property without asking to get that properties value.
+
+`("a" in myObject); // true`
+`myObject.hasOwnProperty('a'); // true`
+
+The _in_ operator will check to see if the propery is in the object, or if it exists at any higher level of the ProtoType chain object traversal. By contrast, _hasOwnProperty(..)_ checks to see if only myObject has the property or not.
+
+## Enumeration
+
+_Enumerable_ basically means 'will be included if the object's properties are iterated through'
+
+_propertyIsEnumarable(..)_ test whether the given property name exists directly on the object and is also _enumarable:true_.
+_Object.keys(..)_ returns an array of all enumarable properties, whereas _Object.getOwnPropertyNames(..)_ returns an array of all properties, enumerable or not.
+
+## Iteration
+
+The _for..in_ loop iterates over the list of enumerable properties on an object.
+
+To iterate over the values ES5 added several helpers:
+_forEach(..)_ will iterate over all values in the array, and it ignores any callback return values. _every(..)_ keeps going until the end or the callback returns a _false_ value, whereas _some(..)_ keeps going until the end or the callback returns a _true_ value.
+
+ES6 adds a _for..of_ loop syntax for iterating over arrays.
+
+```js
+for (var v of myArray) { .. }
+```
+
+The _for..of_ loop asks for an iterator object, and then iterates over the successive return values from calling that iterator object's _next()_ method, once for each loop iteration.
