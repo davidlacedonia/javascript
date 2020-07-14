@@ -1,7 +1,7 @@
 /**
  * Missconception of _this_ mechanism.
  */
-(function () {
+(function this_1() {
   var count = 0;
   function foo() {
     console.log(this.count);
@@ -22,7 +22,7 @@
  * _call_ can be used to invoke a method with an owner
  * object as an argument (parameter)
  */
-(function () {
+(function this_2() {
   var data = {
     count: 0,
   };
