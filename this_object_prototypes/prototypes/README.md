@@ -49,3 +49,34 @@ Bar.prototype = Object.create(Foo.prototype);
 // ES6+
 Object.setPrototypeOf(Bar.prototype, Foo.prototype);
 ```
+
+## Inspecting 'class' relationships
+
+The **instanceof** operator takes a plain object as its lefthand operand and a funtion as its righthand operand. The question _instanceof_ answers is: in the entire _[[Prototype]]_ chain of _a_, does the object arbitrarily pointed to by _Foo.prototype_ ever appear?
+
+```js
+a instanceof Foo;
+```
+
+The second and much cleaner approach to _[[Prototype]]_ reflection is:
+
+```js
+Foo.prototype.isPrototypeOf(a);
+```
+
+We can also directly retrieve the _[[Prototype]]_ of an object.
+
+```js
+Object.getPrototypeOf(a);
+```
+
+## Object links
+
+The _[[Prototype]]_ mechanisms is an internal link that exists on one object that references some other object.
+This linkage is exercised when a property/method reference is made against the first object, and no such property/method exists. In that case, the _[[Prototype]]_ linkage tells the engine to look for the property/method on the linked-to object. In turn, if that object cannot fulfill the lookup, its _[[Prototype]]_ is followed, and so on. This series of links between objects forms what is called the 'prototype chain'
+
+### Creating links
+
+`Object.create(..)` creates a new object linked to the object we specified, which gives us all the power (delegation) of the _[[Prototype]]_ mechanisms.
+
+We don't need classes to create meaningful relationships between two objects.
