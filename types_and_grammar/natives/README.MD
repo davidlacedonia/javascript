@@ -1,15 +1,15 @@
 # Natives
 
-- String()
-- Number()
-- Boolean()
-- Array()
-- Object()
-- Function()
-- RegExp()
-- Date()
-- Error()
-- Symbol()
+- `String()`
+- `Number()`
+- `Boolean()`
+- `Array()`
+- `Object()`
+- `Function()`
+- `RegExp()`
+- `Date()`
+- `Error()`
+- `Symbol()`
 
 They are actually built-in functions.
 
