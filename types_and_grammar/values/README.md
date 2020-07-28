@@ -68,3 +68,29 @@ The type of NaN is number. NaN is **not reflexive**, which means is never equal 
 ## Special equality
 
 `Object.is(..)` test two values for absolute equality. Shouldn't be used in cases where `==` or `===` are known to be safe. Is for special cases like: `0 === -0` or `NaN`.
+
+## Value versus reference
+
+In JavaScript there are no pointers, and references work a bit diferently. A reference in JS points at a (shared) value, so if you have 10 different references, they are all always distinct references to a single shared value. None of them are references/pointers to each other.
+
+The **type** of the value _solely_ controls wheter that value will be assigned by value-copy or by refence-copy.
+
+Simple values (primitives) are _always_ assigned/passed by **value-copy**: null, undefined, string, number, boolean and symbol.
+
+Compound values, objects (including arrays) and functions, always create a copy of the **reference** on assignment or passing.
+
+```js
+// value-copy
+var a = 2;
+var b = a;
+b++;
+a; // 2
+b; // 3
+
+// reference-copy
+var c = [1, 2, 3];
+var d = c;
+d.push(4);
+c; // [1, 2, 3, 4]
+d; // [1, 2, 3, 4]
+```
