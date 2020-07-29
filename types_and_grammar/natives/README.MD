@@ -56,11 +56,11 @@ Using them for private or special properties is likely their primary use case.
 
 ## Native prototypes
 
-Each of the built-in native constructors has its own `.prototype` object. This objects contain behavior unique to their particular object subtype. For example, all strin gobjects, and by extension (via boxing) string primitives, have access to default behavior as methods defined on the `String.prototype` object. Such as, `indexOf(..)`, `charAt(..)`, etc.
+Each of the built-in native constructors has its own `.prototype` object. This objects contains behavior unique to their particular object subtype. For example, all string objects, and by extension (via boxing) string primitives, have access to default behavior as methods defined on the `String.prototype` object. Such as, `indexOf(..)`, `charAt(..)`, etc.
 
 ## Prototypes as defaults
 
 `Function.prototype` being an empty function, `RegExp.prototype` being an empty regex, and `Array.prototype` being an empty array make them all nice default values to assign to variables if those variables wouldn't already have had a value of the proper type.
 
-One minor side benefit of this approach is that the .prototypes are already created and built-in.
+One minor side benefit of this approach is that the `.prototypes` are already created and built-in.
 Be careful not to use `Array.prototype` as a default value that will subsequently be modified.
