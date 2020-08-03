@@ -30,7 +30,7 @@ Narrow list of values that will coerce to false when coerced to a boolean value:
 
 ## Explicit coercion
 
-### String <> Numbers
+### String <-> Numbers
 
 `String(..)` coerces from any other value to a primitve `string` value.
 `Number(..)` coerces from any other value to a primitive `number` value.
@@ -72,9 +72,33 @@ Parsing a numeric value out of a string is _tolerant_ of non-numeric characters,
 
 When parsing (`parseInt`), if you pass a non-string, the value you pass will automatically be coerced to a `string` first.
 
-## Boolean
+### Boolean
 
 `Boolean(..)` is a en explict way of forcing the 'ToBoolean' coercion.
 Just like the `+` unary coerces a value to a number, the unary `!` negate operator explictly coerces a value to a `boolean`. The most common way is to use double-negate operator `!!`, to flip the parity back to the original.
 
 Any of these `ToBoolean` coercions would happen implictly without the `Boolean(..)` or `!!`, if used in a boolean context such as an `if (..)`.
+
+## Implicit coercion
+
+Refers to type of conversions that are hidden, that implicitly ocucur from other actions.
+
+_Goal_: reduce verbosity, boilerplate, and/or unnecessery implementation details that clutters up on our code with noise that distracts from the more important intent.
+
+### Strings <-> Numbers
+
+The `+` algorithm will concatenate if either operand is either already a `string`, or if the following steps produce a `string` representation. It first calls the `ToPrimitive` abstract operation on the value, which then calls the `[[DefaultValue]]` algorithm.
+The `valueOf()` operation on the `array` will fail to produce a simple primitive, so it then falls to a `toString()` representation.
+If either operand to `+` is a `string`, the operation will be `string` concatenation. Otherwise, it's always numeric addition.
+
+The `-` is defined only for numeric substraction, so `a - 0` forces `a`'s values to be coerced to a `number`. While far less common, `a * 1` or `a / 1` would accomplish the same result, as those operators are also only defined for numeric operations.
+
+### * -> Numbers
+
+What sort of expressions require/force (implicitly) a `boolean` coercion?
+
+1. The test expression in a `if (..)` statement.
+2. The second clause in a `for (..; ..; ..)` header.
+3. The test expression in a `while(..)` and `do..while(..)` loops.
+4. The test expression (first clause) in `? :` ternary expressions.
+5. The lefthand operand on the `||` and `&&` operators.
