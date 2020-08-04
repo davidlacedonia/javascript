@@ -93,7 +93,7 @@ If either operand to `+` is a `string`, the operation will be `string` concatena
 
 The `-` is defined only for numeric substraction, so `a - 0` forces `a`'s values to be coerced to a `number`. While far less common, `a * 1` or `a / 1` would accomplish the same result, as those operators are also only defined for numeric operations.
 
-### * -> Numbers
+### \* -> Numbers
 
 What sort of expressions require/force (implicitly) a `boolean` coercion?
 
@@ -102,3 +102,59 @@ What sort of expressions require/force (implicitly) a `boolean` coercion?
 3. The test expression in a `while(..)` and `do..while(..)` loops.
 4. The test expression (first clause) in `? :` ternary expressions.
 5. The lefthand operand on the `||` and `&&` operators.
+
+## Operators || and &&
+
+They don't actually result in a _logic_ value (aka `boolean`). They result in the value of one (and only one) of their two operands.
+
+```js
+var a = 42;
+var b = "abc";
+var c = null;
+
+a || b; // 42
+a && b; // 'abc'
+
+c || b; // 'abc'
+c && b; // null
+```
+
+Both performs and `boolean` test on the first operand. If the operand is not already `boolean`, a normal `ToBoolean` coercion occurs. For the `||` if `true`, the expression results in the value of the first operand. If the test is `false`, results in the second operand. Inversely, for the `&&` operand, if `true`, results in the value of the second operand. And if `false`, results in the value of the first operand.
+
+_note: explicit coercion of a `symbol` to a `string` is allowed, but implicit coercion of the same is disallowed and throws an error._
+
+## Lose equals == vs strict equals ===
+
+`==` allows coercion in the equality comparision and `===` disallows coercion.
+If you are comparing values of different types, ask yourself, when comparing these two values, do I want coercion or not?
+
+When using `==` on different types, one or both of the values will need to be implictly coerced.
+
+### string to numbers
+
+If type `x` is `Number`, and type `y` is `String`, return the result of the comparision `x = ToNumber(y)`.
+If type `x` is `String`, and type `y` is `Number`, return the result of the comparision `ToNumber(x) = y`.
+
+```js
+var a = 42;
+var b = "42";
+
+a === b; // false
+a == b; // true
+```
+
+### anything to boolean
+
+If type `x` is `Boolean`, return the result of the comparision `ToNumber(x) === y`.
+If type `y` is `Boolean` return the result of the comparision `x == ToNymber(y)`.
+
+```js
+var x = true;
+var y = "42";
+
+x == y; // false
+```
+
+`ToNumber(true)` is parsed to `1`. `1 == '42'` so, then `'42'` is parsed to `42`. And `1 == 42` is false.
+
+**Never, ever**, under any circumstances, use `== true` or `== false`. Ever.
