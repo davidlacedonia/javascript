@@ -158,3 +158,56 @@ x == y; // false
 `ToNumber(true)` is parsed to `1`. `1 == '42'` so, then `'42'` is parsed to `42`. And `1 == 42` is false.
 
 **Never, ever**, under any circumstances, use `== true` or `== false`. Ever.
+
+### nulls to undefineds
+
+`null` and `undefined`, when compared with `==` lose equality, equate to each other, and no other values on the entire language.
+
+```js
+var a = null;
+var b;
+
+a == b; // true
+a == null; // true
+b == null; // true
+
+if (a == null) { ... }
+```
+
+### objects to nonobjects
+
+If type `x` is either `String` or `Number` and type `y` is `Object`, return the result of the comparision `x = ToPrimitive(y)`.
+If type `x` is `Object` and type `y` is either `String` or `Number`, return the result of the comparision `ToPrimitive(x) = y`.
+
+```js
+var a = 42;
+var b = [42];
+
+a == b; // true
+```
+
+## safely using implict coercion
+
+If either side of the comparision can have `true` or `false` values, don't ever, EVER use `==`.
+If either side of the comparision can have `[]`, `''`, or `0` values, seriously consider not using `==`.
+
+## Abstract relational comparision (<, >, <=, =>)
+
+The algorithm first calls ToPrimitive coercion on both values, and if the return result of either call is not a `string`, then both values are coerced to `number` values using the `ToNumber` operation rules, and compared numerically.
+
+```js
+var a = [42];
+var b = ["43"];
+
+a < b; // true
+b < a; // false
+```
+
+However, if both values are `string`s for the `<` comparision, simple lexicographic comparision on the characters is performed (character by character).
+
+```js
+var a = ["42"];
+var b = ["043"];
+
+a < b; // false
+```
