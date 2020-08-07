@@ -56,7 +56,7 @@ if (a) doSomething(a);
 var a = 42;
 var b;
 
-b = a++, b;
+b = a++, a;
 a; // 43;
 b; // 42
 ```
