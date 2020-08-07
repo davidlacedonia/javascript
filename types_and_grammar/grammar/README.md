@@ -20,7 +20,7 @@ When `++a` is used in the prefix position, its side effect happens _before_ the 
 
 ### else if and optional blocks
 
-There is a hidden characteristich of the JS grammar: there is no `else if`.
+There is a hidden characteristic of the JS grammar: there is no `else if`.
 
 ```js
 if (a) {
