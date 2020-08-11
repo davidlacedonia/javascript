@@ -140,3 +140,44 @@ var a = {
   b: 43,
 }; // Error
 ```
+
+## Temporal dead zone
+
+The TDZ refers to places in code where a variable reference cannot yet be made, because it hasn't reached its required initizalition.
+
+```js
+{
+  a = 2; // Reference error
+  let a;
+}
+```
+
+## Function arguments
+
+When using ES6's default parameter values, the default value is applied to the parameter if you either omit an argument, or you pass an `undefined` value in its place.
+
+## try..finally
+
+The code in the `finally` clause _always_ runs (no matter what), and it always runs right after the `try` finish, before any other code runs. In one sense, you can kind of think of the code in a `finally` clause as being in a callback function that will always be called regardless of how the rest of the block behaves.
+
+```js
+function foo() {
+  try {
+    return 42;
+  } finally {
+    console.log("hello");
+  }
+
+  console.log(foo());
+  // Hello
+  // 42
+
+  // 42 is logged last, because its the completion value
+  // for example if finally has a return, will override the 42
+}
+```
+
+## switch
+
+The matching that occurs between the expression and each `case` expression is identical to the `===` algorithm.
+You may wish to allow coercive equality, and to do so you'll need to sort of 'hack' the `switch` statement using `switch(true)`.
