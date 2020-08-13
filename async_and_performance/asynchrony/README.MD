@@ -9,3 +9,7 @@ Your program is generally broken up into lots of small chunks, which happen one 
 ## Parallel theading
 
 An event loop, breaks its work into tasks and executes them in serial, disallowing parallel access and changes to shared memory.
+
+## Run to completion
+
+Because of JavaScript's single-threading, the code inside functions is atomic, which means that once a function starts running, the entirety of its code will finish before any of the code in another function can run, or vice versa.
