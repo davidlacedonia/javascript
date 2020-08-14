@@ -8,10 +8,11 @@ Only the declarations themeselves are hoisted, while any assignments or other ex
 All declarations are processed first, before any part of your code is executed.
 
 ```js
-  var a = 2;
+var a = 2;
 ```
+
 This is actually interpreted as two statements.
-_var a_ and _a = 2_
+`var a` and `a = 2`
 The first statement, the declaration, is processed during the compilation phase. The second statement, the assignment, is left in place for the execution phase.
 
 Hoisting is per scope.

@@ -10,8 +10,8 @@ For example:
 var a = 2;
 ```
 
-1. First Compiler encounters **var a** and asks Scope to see if a variable **a** already exists for that particular scope. If so, it's ignored and moves on. Otherwise it is created on the scope collection.
-2. Then, the Engine asks Scope if there is a variable **a** to handle the assignment **= 2**. If so, Engine uses that variable, if not, looks **elsewhere (Nested scope)**
+1. First Compiler encounters `var a` and asks Scope to see if a variable `a` already exists for that particular scope. If so, it's ignored and moves on. Otherwise it is created on the scope collection.
+2. Then, the Engine asks Scope if there is a variable `a` to handle the assignment `= 2`. If so, Engine uses that variable, if not, looks **elsewhere (Nested scope)**
 If the Engine eventually finds the variable, it assings the value 2 to it, if not the Engine will raise an error.
 
 ## LHS/RHS

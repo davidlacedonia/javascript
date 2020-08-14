@@ -8,16 +8,17 @@ Enclosing functions inside parenthesis treats the functions as a standar declara
   (function foo(){ .. })
 ```
 
-Hides the name __foo__ inside itself, which means it dos not pollute the enclosing scope unnecesarily.
+Hides the name `foo` inside itself, which means it dos not pollute the enclosing scope unnecesarily.
 
 ### Anonymus vs named
 
 Function expressions can be anonymus, but function declarations cannot omit the name.
 
 Drawbacks of anonymus functions:
-* no useful name to display in stack traces, which makes debugging more dificult.
-* incapability to refer to itself (recursion)
-* less readable/understandle code
+
+- no useful name to display in stack traces, which makes debugging more dificult.
+- incapability to refer to itself (recursion)
+- less readable/understandle code
 
 The best practice is to always name your functions expressions.
 

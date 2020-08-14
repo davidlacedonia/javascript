@@ -31,9 +31,9 @@ Simple primitives:
 * object
 
 It's a common misstatement that 'everything in JS is an object'.
-By contrast, there are a few special object subtypes, which we can refer to as _complex primitives_.
+By contrast, there are a few special object subtypes, which we can refer to as **complex primitives**.
 
-_function_ is a subtype of object, is _first class_ in that they are basically just normal objects, and so they can be handled like any other plain objet.
+`function` is a subtype of object, is _first class_ in that they are basically just normal objects, and so they can be handled like any other plain objet.
 Arrays are also a form of objects, with extra behavior.
 
 ## Built in objects
@@ -48,7 +48,7 @@ Arrays are also a form of objects, with extra behavior.
 * RegExp
 * Error
 
-They are actually just built-in functions, and can be used as a constructor (_new_ operator), with the result being a newly constructed object of the subtype in question.
+They are actually just built-in functions, and can be used as a constructor (`new` operator), with the result being a newly constructed object of the subtype in question.
 
 ```js
 var strPrimitive = 'YDKJS';
@@ -70,7 +70,7 @@ The contents of an object consist of values stored at specifically named _locati
 
 ## Computed property names
 
-In ES6 you can specify an expression, surrounded by a _[]_ pair
+In ES6 you can specify an expression, surrounded by a `[]` pair
 
 ```js
 var prefix = 'foo';
@@ -94,7 +94,7 @@ Be carefull: if you try to add a property to an array, but the property name loo
 
 ## Duplicating objects
 
-_Object.assign(..)_ takes a target object as its first parameter, and one or more source objects as its subsequent parameters. It iterates over all the _enumerable_, _owned keys_ on the _source_ object(s) and copies them (via assignment only) to the target. It also returns the target.
+`Object.assign(..)` takes a target object as its first parameter, and one or more source objects as its subsequent parameters. It iterates over all the `enumerable`, _owned keys_ on the _source_ object(s) and copies them (via assignment only) to the target. It also returns the target.
 
 ```js
 var obj = Object.assign({}, myObject);
