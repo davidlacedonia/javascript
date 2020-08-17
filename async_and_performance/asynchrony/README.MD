@@ -13,3 +13,13 @@ An event loop, breaks its work into tasks and executes them in serial, disallowi
 ## Run to completion
 
 Because of JavaScript's single-threading, the code inside functions is atomic, which means that once a function starts running, the entirety of its code will finish before any of the code in another function can run, or vice versa.
+
+## Inversion of control
+
+When you take part of your program and give over control of its execution to another third party. There's an unspoken 'contract' that exists between your code and the third party utility, a set of things you expect to be maintained.
+
+```js
+ajax("..", function () {
+  //..
+});
+```
