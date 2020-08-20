@@ -23,3 +23,55 @@ ajax("..", function () {
   //..
 });
 ```
+
+## Failing to pass along any parameters/environment
+
+If you don't explicitly resolve with a value either way, the value is `undefined`. If you call `resolve(..)` or `reject(..)` with multiple parameters, all subsequent parameters beyond the first will be silently ignored.
+
+## Swallowing any errors/exceptions
+
+If at any point in the creation of a Promise, or in the observation of its resolution, a JS exception error occurs, such as a `TypeError` or `ReferenceError`, that exception will be caught, and it will force the Promise in question to become rejected.
+
+## Trustable promise
+
+If you pass an immediate, non-Promise, non-thenable value to `Promise.resolve(..)`. you get a promise that's fulfilled with that value.
+
+`Promise.resolve(..)` will accept any thenable, and will unwrap it to its non-thenable value. But you get back from `Promise.resolve(..)` is a real, genuine Promise in its place, **one that you can trust**. If what you passed in is already a genuione Promise, you just get it right back.
+
+## Trust built
+
+Promises are a pattern that augment callbacks with trustable semantics, so that the behavior is more reason-able and more reliable. By uninverting the _inversion of control_ of callbacks, we place the control with a trustable system (Promises) that was designed specifically to bring sanity to our async.
+
+## Chain flow
+
+Every time you call `then(..)` on a Promise, it creates and returns a new Promise, which we can _chain_ with.
+Whatever value you return from the `then(..)` call's fulfillment callback (the first parameter) is automatically set as the fulfillment of the chained Promise.
+
+```js
+var p = Promise.resolve(2);
+
+p.then(function (v) {
+  console.log(v);
+  return v * 2;
+}).then(function (v) {
+  console.log(v); // 42
+});
+```
+
+`Promise.resolve(..)` directly returns a received genuine Promise, or it unwraps the value of a received thenable -- and keeps going recursively while it keeps unwrapping thenables.
+
+Of course, the value passing from step to step is optional. If you don't return an explicit value, an implicit `undefined` is assumed, and the promises still chain together the same way.
+
+```js
+request("..")
+  .then(function (res) {
+    return request("..");
+  })
+  .then(function (res) {
+    console.log(res);
+  });
+```
+
+If you call `then(..)` on a promise, and you only pass a fulfillment handler to it, an assumed rejection handler is substituted. The assumed rejection handler simply rethrows the error.
+
+If a proper valid function is not passed as the fulfillment handler parameter to `then(..)`, there's also a default handler substituted, and it passes whatever value it receives along to the next step.
