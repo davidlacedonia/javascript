@@ -75,3 +75,28 @@ request("..")
 If you call `then(..)` on a promise, and you only pass a fulfillment handler to it, an assumed rejection handler is substituted. The assumed rejection handler simply rethrows the error.
 
 If a proper valid function is not passed as the fulfillment handler parameter to `then(..)`, there's also a default handler substituted, and it passes whatever value it receives along to the next step.
+
+## Error handling
+
+`try..catch` is synchronous only, so it fails to help in async code patterns.
+Instead use "split callbacks" style, there's one callback for fulfillment and one for rejection.
+
+```js
+var p = Promise.reject("oops");
+p.then(
+  function fulfilled() {
+    // never gets here
+  },
+  function rejected(err) {
+    console.log(err);
+  }
+);
+```
+
+## Pit of despair
+
+To avoid losing an error to the silence of a forgotten/discarded Promise, some developers have claimed that a 'best practice' for Promise chains is to always end your chain with a final `catch(..)`.
+
+```js
+p.then().catch(handleErrors);
+```
