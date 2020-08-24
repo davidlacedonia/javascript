@@ -100,3 +100,21 @@ To avoid losing an error to the silence of a forgotten/discarded Promise, some d
 ```js
 p.then().catch(handleErrors);
 ```
+
+## Promise patterns
+
+### Promise.all
+
+In classic programming terminology, a "gate" is a mechanism that waits on two or more parallel/concurrent tasks to complete before continuing. It doesn't matter what order they finish in, just that all of them have to complete for the gate to open and let the flow control through. In the Promise API, we call this pattern `all([..])`.
+
+```js
+Promise.all([p1, p2]).then(fn);
+```
+
+The promise returned will receive a fulfillment message that is an array of all the fulfillment messages from the passed in promises, in the same order as specified (regardless of fulfillment order).
+
+In any of those promises instead is rejected, the main `Promise.all([..])` promise is immediately rejected, discarding all results from any other promises.
+
+### Promise.race
+
+Sometimes you only want to respond to the "first Promise to cross the finish line", letting the other Promises fall away. This pattern is classically a "latch", but in Promises it's called a "race". A race requires at least one "runner", so if you pass an empty array, instead of immediately resolving, the main `race([..])` Promise will never resolve. Because only one promise wins, the fulfillment value is a single message.
