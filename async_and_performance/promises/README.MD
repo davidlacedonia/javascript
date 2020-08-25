@@ -8,6 +8,38 @@ add().then(successFn, errorFn);
 
 Once a Promise is resolved, it stays that way forever -- it becomes an _immutable value_ at that point -- and can then be observed as many times as necessary.
 
+## Constructor
+
+`Promise(..)` must be used with `new`, and must be provided a function callback that is synchronously/immediately called. This function is passed two function callbacks that act as resolution capabilities for the promise. Commonly labeled `resolve(..)` and `reject(..)`.
+
+```js
+var p = new Promise(function (resolve, reject) {
+  // ...
+});
+```
+
+## Resolve
+
+If `resolve(..)` is passed an immediate, non Promise, non-thenable value, then the promise is fulfilled with that value. But if `resolve(..)` is passed a genuine Promise or thenable value, the value is unwrapped recursively, and whatever its final resolution/state is will be adopted by the promise.
+
+## Reject
+
+Simple rejects the promise. A shortcut for creating an already rejected promise is `Promise.reject(..)`. Reject also unwraps thenable values.
+
+## Then and catch
+
+Each Promise instance has `then(..)` and `catch(..)` methods, which allow registering of fulfillment and rejection handlers for the Promise. Once the Promise is resolved, one or the other of these handlers will be called, but not both, and it will always be called asynchronously.
+
+If `then` receives a non function value, it will be replaced with a default callback, which simple passes the message along, while the default rejection callback simply rethrows (propagates) the error reason it receives.
+
+## Race and all
+
+Both creates a Promise as their return value. The resolution of that promise is controlled entirely by the array of promises that you pass in.
+
+For `Promise.all([..])` all the promises you pass in must fulfill for the returned promise to fulfill. If any promise is rejected, the main returned promise is immediately rejected too. For fulfillment you receive an `array` of all the passed in promises fulfillment values.
+
+For `Promise.race([..])` only the first promise to resolve (fulfillment or rejection) wins, and whatever that resolution is becomes the resolution of the returned promise (latch Pattern).
+
 ## Duck typing
 
 The way to recognize a Promise (or something that behaves like a Promise) would be to define something called a "thenable" as any object or function which has a `then(..)` method on it. It is assumed that any such values is a Promise-conforming thenable.
