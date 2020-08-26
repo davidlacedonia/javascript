@@ -89,3 +89,13 @@ Promise.race([foo(), timeoutPromise(3000)]).then(
   () => console.log("rejected by timeout!")
 );
 ```
+
+### Promise uncancelable
+
+Once you create a Promise and register a fulfillment and/or rejection handler for it, there's nothing external you can do to stop that progression if something else happens to make that task moot.
+
+### Promise performance
+
+More work to do, more guards to protect, means that Promises are slower compared to naked, untrusted callbacks, but it's worth it.
+
+Promises don't get rid o callbacks, they just redirect the orchestration of those callbacks to a turstable intermediary mechanism that sits between us and another utility.
