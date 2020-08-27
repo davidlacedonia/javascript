@@ -69,3 +69,43 @@ res.value; // 42
 
 Only a paused `yield` could accept such a value passed by a `next(..)`.
 `return` is certainly not any more required in generators that in regular functions.
+
+## Multiple iterators
+
+Each time you construct an _iterator_, you are implictly constructing an instance of the generator which that iterator will control.
+
+## Generating values
+
+An _iterator_ is a well-defined interface for stepping through a series of values from a producer. The JS interface for iteratores, is to call `next()` each time you want the next value from the producer.
+
+The `next()` call returns an object with two properties: `done` is a `boolean` value signaling the iterator's complete status; `value` holds the iteration value.
+
+ES6 also adds the `for..of` loop, which means that a standar iterator can automatically be consumed with native loop syntax.
+
+The `for..of` loop automatically calls `next()` for each iteration -- it doesn't pass any values in to the `next()` -- and it will automatically terminate on receiving a `done:true`
+
+Many built-in data structures in JS, like `array`'s also have default _iterators_:
+
+```js
+var a = [1, 3, 5, 7];
+
+for (var v of a) {
+  console.log(v);
+}
+```
+
+### Iterables
+
+_Iterable_ is an `object` that **contains** an _iterator_ that can iterate over its values.
+
+The way to retrieve an _iterator_ from an _iterable_ is that the _iterable_ must have a function on it, with the name being the special ES6 symbol value `Symbol.iterator`. When this function is called, it returns an _iterator_.
+
+The `for..of` loop automatically calls its `Symbol.iterator` function to construct an _iterator_.
+
+```js
+var a = [1, 3, 5, 7, 9];
+var it = a[Symbol.iterator]();
+it.next().value; // 1
+it.next().value; // 3
+it.next().value; // 5
+```
