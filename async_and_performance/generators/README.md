@@ -109,3 +109,62 @@ it.next().value; // 1
 it.next().value; // 3
 it.next().value; // 5
 ```
+
+## Generator iterator
+
+`for (var v of something()) { .. }`: we didn't just reference `something` as a value, but instead called the `*something()` generator to get its _iterator_ for the `for..of` loop to use. `something()` call produces an iterator, but the `for..of` loop wants an _terable_, so the generator's _iterator_ algo has a `Symbol.iterator` function on it.
+
+## Stopping the generator
+
+`*something()` generator was basically left in a suspended state forever after the `break` in the loop was called. But there's a hidden behavior that takes care of that for you. **Abnormal completion**, of the `for..of` loop -- generally caused by a `break`, `return`, or an uncaught exception -- sends a signal to the generator's _iterator_ for it to terminate.
+Technically, the `for..of` loop also sends this signal to the _iterator_ at the normal completion of the loop.
+
+While a `for..of` loop will automatically send this signal, you may wish to send the signal manually to an _iterator_; you do this by calling `return(..)`.
+
+If you specify a `try..finally` clause inside the generator, it will always be run even when the generator is externally completed. This is useful if you need to clean up resources.
+
+```js
+function* something() {
+  try {
+    // ...
+  } finally {
+    console.log("cleaning up");
+  }
+}
+
+var it = something();
+for (var v of it) {
+  if (v > 500) {
+    conosle.log(it.return("hello world").value);
+  }
+}
+// 1 9 33 105 321 969
+// cleaning up!
+// hello world
+```
+
+## Iterating generators asynchronously
+
+```js
+function foo(x, y) {
+  ajax("..", function (err, data) {
+    if (err) it.throw(err);
+    else it.next(data);
+  });
+}
+
+function* main() {
+  try {
+    var text = yield foo(11, 31);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+var it = main();
+it.next();
+```
+
+## Synchronous error handling
+
+The awesome part is that this `yield` pausing also allows the generator to `catch` an error. The `yield`-pause nature of generators means that not only do we get synchronous-looking `return` values from async function calls, but we can also synchronously `catch` errors from those async function calls.
