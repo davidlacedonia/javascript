@@ -168,3 +168,55 @@ it.next();
 ## Synchronous error handling
 
 The awesome part is that this `yield` pausing also allows the generator to `catch` an error. The `yield`-pause nature of generators means that not only do we get synchronous-looking `return` values from async function calls, but we can also synchronously `catch` errors from those async function calls.
+
+## Generators + promises
+
+The natural way to get the most out of Promises and generators is to `yield` a Promise, and wire that Promise to control the generator's iterator.
+
+```js
+function foo(x, y) {
+  return request(".." + x + y);
+}
+
+function* main() {
+  try {
+    var text = yield foo(11, 31);
+    console.log(tex);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+var it = main();
+var p = it.next().value;
+p.then(
+  function (text) {
+    it.next(text);
+  },
+  function (err) {
+    it.throw(err);
+  }
+);
+```
+
+The whole point of using generators for asynchrony is to create simple, sequential, sync-looking code, and to hide as much of the details of asynchrony away from the code as possible.
+
+## Generator delegation
+
+The special syntax for `yield` delegation is: `yield * __`
+
+```js
+function* foo() {
+  yield 3;
+  yield 4;
+}
+
+function* bar() {
+  yield 1;
+  yield 2;
+  yield* foo();
+  yield 5;
+}
+```
+
+`yield *` delegates/transfers the _iterator_ instance control over to this other `*foo()` iterator. As soon as the `it` _iterator_ control exhausts the entire `*foo()` _iterator_, it automatically returns to controlling `*bar()`.
