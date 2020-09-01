@@ -220,3 +220,23 @@ function* bar() {
 ```
 
 `yield *` delegates/transfers the _iterator_ instance control over to this other `*foo()` iterator. As soon as the `it` _iterator_ control exhausts the entire `*foo()` _iterator_, it automatically returns to controlling `*bar()`.
+
+## Delegating asynchrony
+
+```js
+function* foo() {
+  var r2 = yield request("..");
+  var r3 = yield request(".." + r2);
+  return r3;
+}
+
+function* bar() {
+  var r1 = yield request("..");
+  var r3 = yield* foo();
+  console.log(r3);
+}
+
+run(bar);
+```
+
+The value is just returned back directly via the `yield* foo()` mechanics.
