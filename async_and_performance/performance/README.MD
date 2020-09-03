@@ -31,3 +31,31 @@ Some common uses for web workers:
 - Sorting large data sets
 - Data operations (compression, audio analysis, image pixel manipulations, etc).
 - High traffic network communication
+
+## Data transfer
+
+In the early days of Workers, serializing all data to a string value was the only option. Thankfully, if you pass an object, so-called **"Structured cloning algorigthm"**, is used to copy/duplicate the object on the other side.
+
+An even better option, is **"Transferable Objects"**, in which the object's "ownership" is transferred, but the data itself is not moved. Any data structure that implements the Transferable interface will automatically be transferred this way.
+
+## Shared workers
+
+Creating a single centralized Worker that all the page instances of your site or app can share is quite usefull.
+
+```js
+var w1 = new SharedWorker("..");
+```
+
+Because a shared Worker can be connected to or from more than one program instance or page on your site, the Worker needs a way to know which program a message comes from.
+
+```js
+w1.port.addEventListener("message", handleMessages);
+//
+w1.port.postMessage("something cool");
+```
+
+Also the port connection must be initialized, as `w1.port.start()`
+
+## asm.js
+
+"asm.js" is a label for a highly optimizable subset of the JavaScript language. By carefully avoiding mechanims and patterns that are hard to optimize (garbage collection, coercion, etc.), ams.js-style code can be recognized by the JS engine and given special attention with aggressive low-level optimizations.
