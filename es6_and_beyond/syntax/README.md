@@ -115,3 +115,79 @@ var { x: bam, y: baz, z: bap } = bar();
 ```
 
 The syntactic pattern here is `source: target`.
+
+## Not just declarations
+
+Destructuring is a general assignment operation, not just a declaration.
+
+```js
+var a, b, c, x, y, z;
+
+[a, b, c] = foo();
+({ x, y, z }) = bar());
+```
+
+The variables can already be declared, and then the destructuring only does assignments.
+
+You can solve the traditional "swap two variables" task without a temporary variable;
+
+```js
+var x = 10,
+  y = 20;
+[x, y] = [y, x];
+```
+
+## Too many, too few, just enough
+
+With both array destructuring assignment and object destructuring assignment, you do not have to assign all the values that are present.
+
+```js
+var [, b] = foo();
+var { x, z } = bar();
+```
+
+`...` can perform the same behaviour in destructuring assigments.
+
+```js
+var a = [2, 3, 4];
+var [b, ...c] = a;
+
+console.log(b, c); // 2 [3, 4]
+```
+
+## Default value assignment
+
+Both forms of destructuring can offer a default value option for an assignment
+
+```js
+var [a = 3, b = 4] = foo();
+var { x, y: YY = 20 } = bar();
+```
+
+## Nested destructuring
+
+You can destructure nested values
+
+```js
+var a1 = [1, [2, 3, 4], 5];
+var o1 = { x: { y: { z: 6 } } };
+
+var [a, [b, c, d], e] = a1;
+var {
+  x: {
+    y: { z: w },
+  },
+} = o1;
+
+console.log(a, b, c, d, e); // 1 2 3 4 5
+console.log(w); // 6
+```
+
+It can be a simple way to flatten an object
+
+```js
+var app = { model: { user: "david" } };
+var {
+  model: { user },
+} = app;
+```
