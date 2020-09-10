@@ -191,3 +191,39 @@ var {
   model: { user },
 } = app;
 ```
+
+## Object literal extensions
+
+### Concise properties
+
+If you need to define a property that is the same name as a lexical identifier, you can shorten it from `x: x` to `x`.
+
+```js
+var x = 2,
+  y = 3,
+  o = {
+    x,
+    y,
+  };
+```
+
+### Concise methods
+
+Functions attached to properties in object literals also have a concise form
+
+```js
+var o = {
+  x() {
+    // ...
+  },
+  something: function something() {
+    // ...
+  },
+};
+```
+
+### Concisely unnamed
+
+The second function here provides a super convenient lexical identifier that will always point to the function itself, giving us the perfect reference for recursion, event binding/unbinding, etc.
+
+Concise methods imply anonymus function expressions. They are short and sweet, and nice convenience. But you should only use them if you're never going to need them to do recursion or event binding/unbinding.
