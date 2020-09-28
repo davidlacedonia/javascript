@@ -227,3 +227,62 @@ var o = {
 The second function here provides a super convenient lexical identifier that will always point to the function itself, giving us the perfect reference for recursion, event binding/unbinding, etc.
 
 Concise methods imply anonymus function expressions. They are short and sweet, and nice convenience. But you should only use them if you're never going to need them to do recursion or event binding/unbinding.
+
+## Computed property names
+
+ES6 allows you to specify an expression that should be computed, whose result is the property name assigned.
+
+```js
+var o = {
+  [prefix + "foo"]: function () {
+    // ..
+  },
+};
+```
+
+Any valid expression can appear inside the `[ .. ]` that sits in the property name position.
+
+## Setting [[Prototype]]
+
+Sometimes it will be helpful to assign the `[[Propertype]]` of an object at the same time you are declaring its object literal.
+
+```js
+var o2 = {
+  __proto__: o1,
+};
+```
+
+For setting the `[[Prototype]]` of an existing object, you can use the ES6 utility `Object.setPrototypeOf(..)`.
+
+## Object super
+
+```js
+var o1 = {
+  foo(): {
+    console.log('o1');
+  }
+}
+
+var o2 = {
+  foo(): {
+    super.foo();
+    console.log('o2');
+  }
+}
+
+Object.setPrototypeOf(o2, o1);
+o2.foo(); // o1
+          // o2
+```
+
+`super` here would basically be the `Object.setPrototypeOf(o2)` -- resolves to `o1` of course -- which is how it finds and calls `o1.foo()`.
+
+## Template literals
+
+The ` back tick as the delimiter. These string literals do allow basic string interpolation expressions to be embedded.
+
+```js
+var greeting = `Hello ${name}`;
+```
+
+One really nice benefit of interpolated string literals is they are allowed to split accross multiple lines.
