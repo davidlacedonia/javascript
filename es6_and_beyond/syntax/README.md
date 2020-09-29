@@ -286,3 +286,29 @@ var greeting = `Hello ${name}`;
 ```
 
 One really nice benefit of interpolated string literals is they are allowed to split accross multiple lines.
+
+## Tagged template literals
+
+```js
+function foo(strings, ...values) {
+  console.log(strings);
+  console.log(values);
+}
+
+var desc = "awesome";
+foo`Everything is ${desc}`;
+// ["Everything is"]
+// ["awesome"]
+```
+
+It's esesentially a special kind of function call that doesn't need the `( .. )`.
+The first argument -- we called it `strings` is an array of all the plain strings.
+The arguments gathered into our values array are the result of the already-evaluated interpolation expressions found in the string literal.
+
+## Raw strings
+
+ES6 comes with a built-in function that can be used as a string literal tag: `String.raw(..)`. It simply passes through the raw versions of the `strings`.
+
+## Arrow functions
+
+Inside arrow functions, the `this` binding is not dynamic, but is instead lexical.
