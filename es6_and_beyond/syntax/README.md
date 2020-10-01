@@ -320,7 +320,7 @@ ES6 adds a for..of loop, which loops over the set of values produced by an _iter
 The value you loop over with `for..of` mus be an _iterable_, or it must be a value which can be coerced/boxed to an object that is an iterable. An iterable is simply an object that is able to produce an iterator, which the loop then uses.
 
 ```js
-var a = ['a', 'b', 'c', 'd', 'e'];
+var a = ["a", "b", "c", "d", "e"];
 
 for (var idx in a) {
   console.log(idx); // 0 1 2 3 4
@@ -334,3 +334,24 @@ for (var val of a) {
 `for..in` loops over the keys/indexes in the `a` array, while `for..of` loops over the values in `a`.
 
 `for..of` loops can be prematurely stopped, just like other loops, with `break`, `continue`, `return`, and thrown exceptions. In any ot these cases, the iterator's `return(..)` function is automatically called (if one exists) to let the itetor perform clenaup tasks, if necessary.
+
+## Symbol
+
+A new primitive.
+
+```js
+var sym = Symbol("some optional description");
+typeof sym; // "symbol"
+```
+
+The description, if provided is solely used for the stringification representation of the symbol.
+
+The internal value of a symbol itself -- referred to as its `name`-- is hidden from the code and cannot be obtained. You can think of this symbol value as an automatically generates, unique string value.
+
+The main point of a symbol is to create a string-like value that can't collide with any other value. So for example, consider using a sumbol as a constant representing an event name.
+
+```js
+const EVT_LOGIN = Symbol("event.login");
+```
+
+The benefit here is that `EVT_LOGIN` holds a value that cannot be duplicated by any other value, so it is impossible for there to be any confusion of which event is being dispatched or handled.
