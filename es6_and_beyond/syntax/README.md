@@ -355,3 +355,9 @@ const EVT_LOGIN = Symbol("event.login");
 ```
 
 The benefit here is that `EVT_LOGIN` holds a value that cannot be duplicated by any other value, so it is impossible for there to be any confusion of which event is being dispatched or handled.
+
+## Symbol as object properties
+
+If a symbol is used as a property/key of an object, it's stored in an special way that the property will not show up in a normal enumeration of the object's properties.
+You can always seet it in the `Object.getOwnPropertySymbols(..)` enumeration.
+
