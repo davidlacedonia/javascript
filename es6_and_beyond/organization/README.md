@@ -113,3 +113,5 @@ for (var of foo()) {
 }
 // 1 2 3
 ```
+
+It's appropriate to think of generators as controlled, progressive code execution.
