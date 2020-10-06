@@ -77,3 +77,39 @@ The major differce is that executing a generator, like `foo(5, 10)` doesn't actu
 Generator also have a new keyword you can use inside them, to signal the pause point: `yield`.
 
 `yield` is not just a pause point. It's an expression that sends out a value when pausing the generator.
+
+The `yield` expression not only sends a value, but also receives.
+
+```js
+function* foo() {
+  var x = yield 10;
+  console.log(x);
+}
+```
+
+When you resume the generator, using the `it.next(..)`, whatever value you resume with will replace/complete the whole `yield 10` expression.
+
+### yield \* delegation
+
+The completion value of the `yield * ..` expression comes from the return value from the delegated-to iterator.
+
+### Iterator control
+
+Generators are controlled by iterators
+
+```js
+function* foo() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+```
+
+We already know we can consume an iterator, even one attached to a generator like `*foo()`, with a `for..of` loop
+
+```js
+for (var of foo()) {
+  console.log(v);
+}
+// 1 2 3
+```
