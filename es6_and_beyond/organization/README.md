@@ -115,3 +115,74 @@ for (var of foo()) {
 ```
 
 It's appropriate to think of generators as controlled, progressive code execution.
+
+### Early completion
+
+The iterator attached to a generator supports the optional `return(..)` and `throw(..)` methods.
+
+```js
+function* foo() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+var it = foo();
+it.next(); // { value: 1, done: false }
+it.return(42); // { value: 42, done: true }
+it.next(); // { value: undefined, done: true }
+```
+
+`return(x)` is kind of like forcing a `return x` to be processed at exactly that moment, such that you get the specified value right back.
+
+Once a generator is completed, either normally or early as shown, it no longer processes any code or returns any values.
+
+The purpose is that it can perhaps do any cleanup tasks. Identical to a normal function pattern, the main way to accomplish this is to use a `finally` clause.
+
+```js
+function* foo() {
+  try {
+    yield 1;
+    yield 2;
+    yield 3;
+  } finally {
+    console.log("clean up!");
+  }
+}
+```
+
+### Early abort
+
+Instead of calling `return(..)`, you can call `throw(..)`. Calling `throw(..)` is essentially like injecting `throw x` at the pause point.
+
+### Error handling
+
+Error handling with generators can be expressed with `try..catch`, which works in both inbound and outbound directions.
+
+```js
+function* foo() {
+  try {
+    yield 1;
+  } catch (err) {
+    console.log(err);
+  }
+
+  yield 2;
+  throw "Hello";
+}
+
+var it = foo();
+it.next(); // { value: 1, done: false }
+try {
+  it.throw("hi"); // hi
+  // { value: 2, done: false }
+  it.next();
+  console.log("never gets here");
+} catch (err) {
+  console.log(err); // Hello
+}
+```
+
+## Modules
+
+ES6 modules are singletons. That is, there's only one instance of the module, which maintains its state. Every time you import that module into another module, you get a reference to the one centralized instance.
