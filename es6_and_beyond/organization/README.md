@@ -272,3 +272,60 @@ You can import the entire API to a single module:
 ```js
 import * as foo from "foo";
 ```
+
+If the module you're importing with `* as ..` has a default export, it is named `default` in the namespace specified.
+All imported bindings are immutable and/or read-only.
+
+Declarations that occur as a result of an `import` are "hoisted"
+
+```js
+foo();
+import { foo } from "foo";
+```
+
+`import "foo"`, this form does not actually import any of the module's bindings into your scope. It loads (if not already loaded), compiles (if not already compiled), and evaluates (if not already run) the "foo" module. Is a sort of preload for a module that may be needed later.
+
+## Classes
+
+```js
+class Foo {
+  constructor(a, b) {
+    this.x = a;
+    this.y = b;
+  }
+
+  gimmeXY() {
+    return this.x * this.y;
+  }
+}
+```
+
+- `class` implies creating a (special) function of the name `Foo`.
+- `constructor(..)` identifies the signature, as well as its body contents.
+- Class methods use the same "concise method" syntax available to object literals.
+- Unlike object literals, there are no commas separating members in a class body, in fact, ther are not even allowed
+
+The `Foo(..)` call _must_ be made with `new`.
+`class Foo` is not hoisted, so you must declare a `class` before you can instantiate it.
+
+Another way of thinking about `class`, which I find more convenient, is as a _macro_ that is used to automatically populate a `prototype` object. Optionally, it also wires up the `[[Prototype]]` relationship if using `extends`.
+
+### extends and super
+
+ES6 classes also have syntax sugar for establishing the `[[Prototype]]` delegation link between two function prototypes, using the class-oriented familiar terminology `extends`.
+
+```js
+class Bar extends Foo {
+  constructor(a, b, c) {
+    super(a, b);
+    this.z = c;
+  }
+
+  gimmeXYZ() {
+    return super.gimmeXY() * this.z;
+  }
+}
+```
+
+`super` automatically refers to the "parent constructor". In a method, it refers to the "parent object", such that you can then make a property/method access off it, such as `super.gimmeXY()`.
+`Bar extends Foo` of course means to link the `[[Prototype]]` of `Bar.prototype` to `Foo.prototype`.
