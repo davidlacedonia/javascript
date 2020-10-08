@@ -186,3 +186,89 @@ try {
 ## Modules
 
 ES6 modules are singletons. That is, there's only one instance of the module, which maintains its state. Every time you import that module into another module, you get a reference to the one centralized instance.
+
+### exporting API members
+
+```js
+export function foo() {
+  // ..
+}
+
+export var awesome = 42;
+
+var bar = [1, 2, 3];
+export { bar };
+```
+
+Anything you don't label with export stays private inside the scope of the module.
+
+You can also "rename" a module member during named export.
+
+```js
+function foo() { .. }
+export { foo as bar };
+```
+
+When you export something, you're exporting a binding to that thing. That means that if you change the value inside your module of a variable yoy already exported a binding to, even if it's already been imported, the imported binding will resolve to the current value.
+
+```js
+function foo(..) {
+  // ..
+}
+
+export default foo;
+```
+
+You are exporting a binding to the function expression value at that moment, _not_ to the identifier foo.
+
+```js
+function foo(..) {
+  // ..
+}
+
+export { foo as default };
+```
+
+In this version of the module export, the default export binding is actually the foo identifier rather than its value, so you get the earlier described behavior that later changing `foo`'s value updates what is seen on the import binding side.
+
+The advantage of having each member individually and explicitly exported is that the engine _can_ do the static analysis and optimization.
+
+You can also re-export another module's export, such as:
+
+```js
+export { foo, bar } from "baz";
+export { foo as FOO } from "baz";
+export * from "baz";
+```
+
+### importing API members
+
+If you want to import certain specific named members of a module's API.
+
+```js
+import { foo, bar, baz } from "foo";
+```
+
+You can rename the bound identifiers imported, as:
+
+```js
+import { foo as theFooFunc } from "foo";
+```
+
+If the module just has a default export:
+
+```js
+import foo from "foo";
+```
+
+You can also import a defautl export along with other named exports.
+
+```js
+import foo, { bar } from "foo";
+```
+
+You can import the entire API to a single module:
+
+```js
+import * as foo from "foo";
+```
