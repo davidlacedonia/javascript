@@ -329,3 +329,34 @@ class Bar extends Foo {
 
 `super` automatically refers to the "parent constructor". In a method, it refers to the "parent object", such that you can then make a property/method access off it, such as `super.gimmeXY()`.
 `Bar extends Foo` of course means to link the `[[Prototype]]` of `Bar.prototype` to `Foo.prototype`.
+
+### Subclass constructor
+
+Constructors are not required for classes or subclasses. The default subclass constructor automatically calls the parent constructor, and passes along any arguments.
+
+```js
+constructor (...args) {
+  super(...args);
+}
+```
+
+### Extending natives
+
+One of the most heralded benefits to the new `class` and `extend` design is the ability to subclass the built-in natives, like `Array`.
+
+```js
+class MyCoolArray extends Array {
+  first() {
+    return this[0];
+  }
+  last() {
+    return this[this.length];
+  }
+
+  var a = new MyCoolArray(1, 2, 3);
+  a.length; // 3
+  a; // [1, 2, 3]
+  a.first(); // 1
+  a.last(); // 3
+}
+```
