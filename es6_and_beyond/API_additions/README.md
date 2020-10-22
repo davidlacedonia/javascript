@@ -45,3 +45,43 @@ Copying simply stops when the end of the array is reached.
 ```js
 [1, 2, 3, 4, 5].copyWithin(3, 0); // [1, 2, 3, 1, 2]
 ```
+
+### fill(..)
+
+Filling an existing array entirely (or partially) with a specified value is natively supported as of ES6 with the `Array#fill(..)` method.
+
+```js
+Array(4).fill(undefined);
+```
+
+Optionally takes _start_ and _end_ parameters which indicate a subset portion of the array to fill.
+
+### find(..)
+
+Works basically the same as `some(..)`, except that once the callback returns a `true`/truthy value, the actual array values is returned.
+
+```js
+a.find(function matcher(v) {
+  return v == "2";
+});
+```
+
+### findIndex(..)
+
+Use `indexOf(..)` if you need the index of a strict match, or `findIndex(..)` if you need th eindex of a more customized match.
+
+```js
+points.findIndex(function matcher(point) {
+  return point.x === 3 || point.x === 6;
+});
+```
+
+## Object
+
+### Object.is(..)
+
+The `Object.is(..)` static function makes a value comparisons in an eve rmore strict fashion than the `===` comparison. In cases where you are trying to strictly identify a `NaN` or `-0` value, `Object.is(..)` is now the preferred option.
+
+```js
+Object.is(x, x);
+```
