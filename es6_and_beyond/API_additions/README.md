@@ -85,3 +85,32 @@ The `Object.is(..)` static function makes a value comparisons in an eve rmore st
 ```js
 Object.is(x, x);
 ```
+
+### Object.getOwnPropertySymbols(..)
+
+`Object.getOwnPropertySymbols(..)` retrieves only the symbol properties directly on an object.
+
+### Object.setPrototypeOf(..)
+
+`Object.setPrototypeOf(a, b)` utily sets the `[[Prototype]]` of an object for the puropses of _behavior delegation_.
+
+### Object.assign(..)
+
+`Object.assign(..)` the first argument is the _target_, and any other arguments passed are the _sources_, which will be processed in listed order. For each source, its enumerable and own keys, not symbols, are copied as if by plain `=` assignment. `Object.assign(..)` returns the target object.
+
+Non-enumerable properties, and non-owned properties are all excluded from the assignment.
+
+## Number
+
+### Number.isNaN(..)
+
+Global `isNan(..)` utility has been broken since its inception, in that it returns `true` for things that are not numbers, not just for the actual `NaN` value, because it coerces the argument to a number type. ES6 addas a fixed utility `Number.isNaN(..)`.
+
+### Number.isFinite(..)
+
+`Number.isFinite(..)` omits the coercive behavior.
+
+```js
+isfinite("42"); // true
+Number.isFinite("42"); // false
+```
