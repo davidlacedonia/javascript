@@ -114,3 +114,31 @@ Global `isNan(..)` utility has been broken since its inception, in that it retur
 isfinite("42"); // true
 Number.isFinite("42"); // false
 ```
+
+### Number.isInteger(..)
+
+```js
+Number.isInteger(4.2); // false
+```
+
+ES6 also degines a `Number.isSafeInteger(..)` utiliy, which checks to make sure the value is both an integer and within the range of `Number.MIN_SAFE)INTEGER`-`Number.MAX_SAFE_INTEGER`.
+
+## String
+
+### repeat(..)
+
+You can repeat a string as:
+
+```js
+"foo".repeat(3);
+```
+
+### String inspection functions
+
+Three new methods for searching/inspection have been added: `startsWith(..)`, `endsWith(..)` and `includes(..)`.
+
+```js
+palindrome.startsWith("on", 5);
+palindrome.endsWith("no", 10);
+palindrome.includes("on");
+```
