@@ -66,3 +66,53 @@ arr[Symbol.toPrimitive] = function (hint) {
 
 arr + 10; // 25
 ```
+
+### Symbol.isConcatSpreadable
+
+The `@@isConcatSpreadable` symbol can be defined as a boolean property, on any object, to indicate if it should be _spread out_ if passed to an array `concat(..)`.
+
+## Proxies
+
+A proxy is a special kind of object you create that "wraps" -- or sits in front of -- another normal object. You can register special handlers (_aka traps_) on the proxy object which are called when various operations are performed against the proxy.
+
+```js
+var obj = { a: 1 },
+  handlers = {
+    get(target, key, context) {
+      console.log("accesing: ", key);
+      return Reflect.get(target, key, context);
+    },
+  },
+  pobj = new Proxy(obj, hanlders);
+```
+
+We "forward" the operation onto `obj` via `Reflect.get(..)`.
+
+Here is a list of handlers you can define on a proxy for a _target_ object/function, and how/when they are triggered:
+
+`get(..)`, `set(..)`, `deleteProperty(..)`, `apply(..)`, `construct(..)`, `getOwnPropertyDescriptor(..)`, `defineProperty(..)`, `getPrototypeOf(..)`, `setPrototypeOf(..)`, `preventExtensions(..)`, `isEctensible(..)`, `ownKeys(..)`, `enumarate(..)`, `has(..)`.
+
+## Reflect API
+
+The `Reflect` object is a plain object, that holds static functions which correspond to various meta programming tasks that you can control. These functions correspond one-to-one with the handler methods (_traps_) that Proxies can define. These utilities in general behave the same as their `Object.*` counterparts.
+
+## Property ordering
+
+This ordering is only guranteed for `Reflect.ownKeys(..)`, `Object.getOwnPropertyNames(..)` and `Object.getOwnPropertySymbols(..)`.
+
+1. Enumerate any owned properties that are integer indexes, in ascending numeric order.
+2. Enumerate the rest of the owned string property names in creating order.
+3. Enumerate owned symbol properties in creation order.
+
+```js
+o[Symbol("c")] = "yay";
+o[2] = true;
+o[1] = true;
+o.b = "awesome";
+o.a = "cool";
+
+Reflect.ownKeys(o); // [1, 2, 'b', 'a', Symbol(c)]
+Object.getOwnPropertyNames(o); // [1, 2, 'b', 'a']
+```
+
+By contrast, `Reflect.enumarate(..)`, `Object.keys(..)`, `for..in`, and `JSON.stringify(..)`, the ordering is implementation dependent and not controllede by specification.
