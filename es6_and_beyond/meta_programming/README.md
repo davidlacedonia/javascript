@@ -116,3 +116,17 @@ Object.getOwnPropertyNames(o); // [1, 2, 'b', 'a']
 ```
 
 By contrast, `Reflect.enumarate(..)`, `Object.keys(..)`, `for..in`, and `JSON.stringify(..)`, the ordering is implementation dependent and not controllede by specification.
+
+## Feature testing
+
+It's a test that you run to determine if a feature is available or not. Is a meta programming technique, to test the environment your program runs in to then determine how your program should behave.
+
+The most common is checking for the existance of an API and if it's not present, defining a polifyll.
+
+```js
+if (!Number.isNaN) {
+  Number.isNaN = function (x) {
+    return x !== x;
+  };
+}
+```
