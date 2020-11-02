@@ -9,11 +9,23 @@ The first thing Compiller will do with this program is perform **lexing** to bre
 For example:
 
 ```js
-var a = 2;
+var a = "a";
+console.log(a, b); // 'a' undefined
+var b = "b";
 ```
 
 1. First Compiler encounters `var a` and asks Scope to see if a variable `a` already exists for that particular scope. If so, it's ignored and moves on. Otherwise it is created on the scope collection.
 2. Then, the Engine asks Scope if there is a variable `a` to handle the assignment `= 2`. If so, Engine uses that variable, if not, looks _elsewhere (Nested scope)_. If the Engine eventually finds the variable, it assings the value 2 to it, if not the Engine will raise an error.
+
+Lexing example:
+
+```js
+var a;
+var b;
+a = "a";
+console.log(a, b);
+b = "b";
+```
 
 ## LHS/RHS look ups
 

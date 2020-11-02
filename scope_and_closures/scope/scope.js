@@ -25,3 +25,9 @@
   // RHS: go get the value of foo
   var c = foo(2);
 })();
+
+(function lexing() {
+  var a = "a";
+  console.log(a, b); // 'a' undefined
+  var b = "b";
+})();
