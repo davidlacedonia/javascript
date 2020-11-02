@@ -18,7 +18,7 @@
     // RHS: go get the value of a
     // LHS: find b to assign a
     var b = a;
-    return a + b; //RHS: go get the value of a and b
+    return a + b; // RHS: go get the value of a and b
   }
 
   // LHS: find c to assign foo
