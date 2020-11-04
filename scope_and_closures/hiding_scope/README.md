@@ -1,8 +1,23 @@
+# Hiding scope
+
 ## Hiding in plain scope
 
 You can hide variables and functions by enclosing them in the scope of a function.
-Why? Principle of Least Privilege: you should expose only what is minimal necessary, and hide everything else.
+Why? **Principle of Least Privilege**: you should expose only what is minimal necessary, and hide everything else.
 Keeping private details private, which leads to better software.
+
+```js
+function scope() {
+  var hiddenVariable = 123;
+  function logHiddenVariable() {
+    console.log(hiddenVariable);
+  }
+  logHiddenVariable();
+}
+
+scope(); // 123
+console.log(hiddenVariable); // ReferenceError
+```
 
 ## Collision avoidance
 
@@ -11,7 +26,7 @@ Collision results often in unexpected overwriting of values.
 
 ## Global namespaces
 
-Libraries often create a single variable declaration, often an object, in the global scope. This object is used as a namespace for that library, where all specific exposures of that functionality are made as properties off that object.
+Libraries often create a single variable declaration, often an object, in the global scope. This object is used as a namespace for that library, where all specific exposures of that functionality are made as properties of that object.
 
 ## Module management
 

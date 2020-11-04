@@ -11,3 +11,16 @@ function doSomething(a) {
 
 doSomething(2);
 doSomethingElse(1); // ReferenceError
+
+(function () {
+  function scope() {
+    var hiddenVariable = 123;
+    function logHiddenVariable() {
+      console.log(hiddenVariable);
+    }
+    logHiddenVariable();
+  }
+
+  scope(); // 123
+  console.log(hiddenVariable); // ReferenceError
+})();
