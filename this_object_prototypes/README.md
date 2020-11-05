@@ -14,4 +14,4 @@
 
 [Delegation](https://github.com/davidlacedonia/javascript/tree/master/this_object_prototypes/delegation)
 
-[Introspection](https://github.com/davidlacedonia/javascript/tree/master/this_object_prototypes/instrospection)
+[Introspection](https://github.com/davidlacedonia/javascript/tree/master/this_object_prototypes/introspection)

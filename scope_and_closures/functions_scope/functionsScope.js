@@ -3,9 +3,10 @@
   console.log("foo!");
   // foo() // recursion
 })();
+console.log(foo);
 
 // Anonymus IIFE
 (function () {
-  console.log("anonymys");
+  console.log("anonymus");
   //canot be called itself
 })();
