@@ -1,4 +1,4 @@
-## Modules
+# Modules
 
 ## Revealing module
 
@@ -11,7 +11,22 @@ There are two requirements for the module pattern to be exercised.
 1. There must be an outer enclosing function, and it must be invoked at least once.
 2. The enclosing funciton must return back at lest one inner funciton, so that the inner function has closure over the private scope, and can access and/or modify that private state.
 
-A slight variation on this pattern is when you only care yto have one instance, a singleton of sorts.
+A slight variation on this pattern is when you only care to have one instance, a singleton of sorts.
+
+```js
+function coolModule() {
+  var something = "cool";
+
+  function doSomething() {
+    console.log(something);
+  }
+
+  return { doSomething }; // exposing doSomething
+}
+
+var api = coolModule();
+api.doSomething();
+```
 
 ## Future modules
 
