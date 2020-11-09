@@ -8,6 +8,8 @@
 
 [Functions scope](https://github.com/davidlacedonia/javascript/tree/master/scope_and_closures/functions_scope)
 
+[Block scope](https://github.com/davidlacedonia/javascript/tree/master/scope_and_closures/block_scope)
+
 [Hoisting](https://github.com/davidlacedonia/javascript/tree/master/scope_and_closures/hoisting)
 
 [Closure](https://github.com/davidlacedonia/javascript/tree/master/scope_and_closures/closure)

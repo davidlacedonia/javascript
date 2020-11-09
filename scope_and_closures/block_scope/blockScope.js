@@ -23,3 +23,16 @@ try {
 } catch (err) {
   console.log(err);
 }
+
+(function () {
+  with (Math) {
+    console.log(log(2)); // 0.69
+  }
+  console.log(log(2)); // log is not defined
+})();
+
+
+if (true) {
+  console.log(notHoisted);
+  let notHoisted = 23;
+}
