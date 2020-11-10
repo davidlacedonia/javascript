@@ -4,7 +4,7 @@
 
 ### Array.of
 
-`Array.of(..)` replaces `Array(..)` as the preferred funciton-form constructor for arrays, because `Array.of(..)` does not have that special single-number-argument-case.
+`Array.of(..)` replaces `Array(..)` as the preferred function-form constructor for arrays, because `Array.of(..)` does not have that special single-number-argument-case.
 
 ```js
 var b = Array.of(3);

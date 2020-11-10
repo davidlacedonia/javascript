@@ -35,7 +35,7 @@ In addition to let, ES6 introduces `const`, which also creates a block-scoped va
 
 ```js
 const constant = true;
-constant = false; // TypeError: ASsignment to constant variable
+constant = false; // TypeError: Assignment to constant variable
 ```
 
 ### Garbage collection

@@ -3,7 +3,7 @@
  *
  * In strict mode the global object is not eligible.
  */
-(function defaul() {
+(function def() {
   function foo() {
     console.log(this.a);
   }
