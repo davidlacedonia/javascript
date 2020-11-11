@@ -13,7 +13,7 @@ var obj = {
 Constructed form
 
 ```js
-var obj = newObject();
+var obj = new Object();
 obj.key = "value";
 ```
 
@@ -23,46 +23,46 @@ Both result in the exact same sort of object.
 
 Simple primitives:
 
-* string
-* number
-* boolean
-* null
-* undefined
-* object
+- string
+- number
+- boolean
+- null
+- undefined
+- object
 
 It's a common misstatement that 'everything in JS is an object'.
 By contrast, there are a few special object subtypes, which we can refer to as **complex primitives**.
 
-`function` is a subtype of object, is _first class_ in that they are basically just normal objects, and so they can be handled like any other plain objet.
+`function` is a subtype of object, is _first class_ in that they are basically just normal objects, and so they can be handled like any other plain object.
 Arrays are also a form of objects, with extra behavior.
 
 ## Built in objects
 
-* String
-* Number
-* Boolean
-* Object
-* Function
-* Array
-* Date
-* RegExp
-* Error
+- String
+- Number
+- Boolean
+- Object
+- Function
+- Array
+- Date
+- RegExp
+- Error
 
 They are actually just built-in functions, and can be used as a constructor (`new` operator), with the result being a newly constructed object of the subtype in question.
 
 ```js
-var strPrimitive = 'YDKJS';
+var strPrimitive = "YDKJS";
 typeof strPrimitive; // string
 strPrimitive instanceof String; // false
 
-var strObject = new String('YDKJS');
+var strObject = new String("YDKJS");
 typeof strObject; // 'object'
 strObject instanceof String; // true
 ```
 
-To perform opetations on primitives, such as checking its length, accesing its individual character content, etc., a String object is required. Luckily the language automatically coerces a string primitive to a String object when necessary.
+To perform opetations on primitives, such as checking its length, accesing its individual character content, etc., a `String` object is required. Luckily the language _automatically coerces_ a string primitive to a String object when necessary.
 
-Objects, Arrays, Functions, and RegExps are all objectes regardless of whether the literal or constructed form is used.
+Objects, Arrays, Functions, and RegExps are all objects regardless of whether the literal or constructed form is used.
 
 ## Contents
 
@@ -86,10 +86,10 @@ Arrays are objects, so even though each index is a positive integer, you can als
 Be carefull: if you try to add a property to an array, but the property name looks like a number, it will end up instead as a numeric index, thus modifiying the array contents.
 
 ```js
-  var arr = ['a', 'b'];
-  arr['2'] = 'c';
-  arr.length; // 3
-  arr[2]; // 'c'
+var arr = ["a", "b"];
+arr["2"] = "c";
+arr.length; // 3
+arr[2]; // 'c'
 ```
 
 ## Duplicating objects
