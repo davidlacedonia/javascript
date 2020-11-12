@@ -38,11 +38,19 @@ To prevent an object from having new properties added to it, call `Object.preven
 
 ### Seal
 
-Takes an oject and essentially calls `Object.preventExtensions(..)` on it, but also marks all its existing properties as `configurable:false`. You cannot add any more properties, but yo also cannot reconfigure or delete any existing properties (though you can still modify their values).
+Takes an oject and essentially calls `Object.preventExtensions(..)` on it, but also marks all its existing properties as `configurable:false`. You cannot add any more properties, but you also cannot reconfigure or delete any existing properties (though you can still modify their values).
+
+```js
+Object.seal(myObject);
+```
 
 ### Freeze
 
 Creates a frozen object, which means it takes an exiting object and essentially calls `Object.seal(..)` on it, but also marks all data accessor' properties as `writable: false`, so that their values cannot be changed.
+
+```js
+Object.freeze(myObject);
+```
 
 ## Getters and setters
 
