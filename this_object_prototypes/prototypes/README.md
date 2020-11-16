@@ -40,7 +40,7 @@ a; // {}
 
 ES6 adds a `Object.setPrototypeOf(..)` helper utiliy, which does the trick in a standar and predictable way.
 
-`Object.create` creates a "new" object out of thin air, and links that new object's internal **[[Prototype]]** to the object you specify.
+`Object.create` creates a "new" object out of thin air, and links that new object's internal `[[Prototype]]` to the object you specify.
 
 ```js
 // pre ES6
@@ -52,7 +52,7 @@ Object.setPrototypeOf(Bar.prototype, Foo.prototype);
 
 ## Inspecting 'class' relationships
 
-The **instanceof** operator takes a plain object as its lefthand operand and a funtion as its righthand operand. The question `instanceof` answers is: in the entire `[[Prototype]]` chain of `a`, does the object arbitrarily pointed to by `Foo.prototype` ever appear?
+The `instanceof` operator takes a plain object as its lefthand operand and a function as its righthand operand. The question `instanceof` answers is: in the entire `[[Prototype]]` chain of `a`, does the object arbitrarily pointed to by `Foo.prototype` ever appear?
 
 ```js
 a instanceof Foo;
@@ -73,7 +73,7 @@ Object.getPrototypeOf(a);
 ## Object links
 
 The `[[Prototype]]` mechanisms is an internal link that exists on one object that references some other object.
-This linkage is exercised when a property/method reference is made against the first object, and no such property/method exists. In that case, the `[[Prototype]]` linkage tells the engine to look for the property/method on the linked-to object. In turn, if that object cannot fulfill the lookup, its `[[Prototype]]` is followed, and so on. This series of links between objects forms what is called the 'prototype chain'
+This linkage is exercised when a property/method reference is made against the first object, and no such property/method exists. In that case, the `[[Prototype]]` linkage tells the engine to look for the property/method on the linked-to object. In turn, if that object cannot fulfill the lookup, its `[[Prototype]]` is followed, and so on. This series of links between objects forms what is called the **prototype chain**.
 
 ### Creating links
 
