@@ -4,13 +4,13 @@ A type is an instrinsic, built-in set of characteristics that uniquely identifie
 
 ## Primitive types
 
-- null
-- undefined
-- boolean
-- number
-- string
-- object
-- symbol
+- `null`
+- `undefined`
+- `boolean`
+- `number`
+- `string`
+- `object`
+- `symbol`
 
 ```js
 typeof undefined === "undefined";
@@ -47,7 +47,7 @@ Variables don't have types, **values** have types. Variables can hold any value,
 
 ## undefined vs undeclared
 
-Variables that have no value currently actually have the undefined value.
+Variables that have no value currently actually have the `undefined` value.
 
 ```js
 var a;
@@ -62,7 +62,7 @@ a; // undefined
 b; // ReferenceError: b is not defined
 ```
 
-`typeof` returns 'undefined' even for 'undeclared' variables.
+`typeof` returns `undefined` even for _undeclared_ variables.
 
 ```js
 typeof b; // 'undefined'

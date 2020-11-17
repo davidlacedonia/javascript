@@ -2,7 +2,7 @@
 
 ## Arrays
 
-Arrays are numerically indexed, but the tricky thing is that they also are objects that can have string keys/properties added to them.
+Arrays are numerically indexed, but the tricky thing is that they also are objects that can have `string` keys/properties added to them.
 
 ```js
 var a = [];
@@ -14,6 +14,10 @@ a.foobar; // hey!
 
 If `slice()` is called without any other paramenters, the default values for its parameters have the effect of duplicating the array.
 In ES6 there's also a built-in utility called `Array.from(..)`
+
+```js
+const duplicatedArray = Array.from([1, 2, 3]);
+```
 
 ## Strings
 
@@ -29,7 +33,7 @@ c; // 'FOO'
 
 ## Numbers
 
-JavaScript has just one numeric type: **number**. This type includes both 'integer' values and fractional decimal numbers.
+JavaScript has just one numeric type: **number**. This type includes both _integer_ values and _fractional decimal_ numbers.
 
 Be carefull with the `.` operator. Since its a valid numeric character, it will first be interpreted as part of the number literal, if possible, instead of being interpreted as a property accessor.
 
@@ -45,9 +49,9 @@ Be carefull with the `.` operator. Since its a valid numeric character, it will 
 
 ## Special values
 
-**null** is an empty value / had a value and doesn't anymore.
+`null` is an empty value, or had a value and doesn't anymore.
 
-**undefined** is a missing value / hasn't had a value yet.
+`undefined` is a missing value, or hasn't had a value yet.
 
 ## Void operator
 
@@ -61,9 +65,13 @@ console.log(void a); // undefined
 ## Special numbers
 
 Any mathematic operation you perform without both operands being numbers will result in the operation failing and you will get the `NaN` value.
-It stands for "not a number", but is more accurate to think of NaN as being an invalid number, failed number, or even bad bumber.
+It stands for "not a number", but is more accurate to think of `NaN` as being an invalid number, failed number, or even bad bumber.
 
-The type of NaN is number. NaN is **not reflexive**, which means is never equal to another NaN. The utility `Number.isNaN(..)` will help us.
+The type of `NaN` is number. `NaN` is **not reflexive**, which means is never equal to another `NaN`. The utility `Number.isNaN(..)` will help us.
+
+```js
+Number.isNaN(2 * "a"); // true
+```
 
 ## Special equality
 
@@ -73,7 +81,7 @@ The type of NaN is number. NaN is **not reflexive**, which means is never equal 
 
 In JavaScript there are no pointers, and references work a bit diferently. A reference in JS points at a (shared) value, so if you have 10 different references, they are all always distinct references to a single shared value. None of them are references/pointers to each other.
 
-The **type** of the value _solely_ controls wheter that value will be assigned by value-copy or by refence-copy.
+The **type** of the value _solely_ controls whether that value will be assigned by value-copy or by refence-copy.
 
 Simple values (primitives) are _always_ assigned/passed by **value-copy**: null, undefined, string, number, boolean and symbol.
 
