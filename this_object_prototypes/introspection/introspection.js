@@ -10,4 +10,4 @@ Object.getPrototypeOf(f1) === Foo; // true
 
 f2 = Object.create(f1);
 Foo.isPrototypeOf(f2); // true (on prototype chain)
-Object.getPrototypeOf(f2) === Foo; // false (protoype is f1)
+Object.getPrototypeOf(f2) === Foo; // false (prototype is f1)

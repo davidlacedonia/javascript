@@ -10,7 +10,7 @@ Objects linked to other objects. In JavaScript, the `[[Prototype]]` mechanism li
 
 In behavior delegation we try to avoid naming things the same at different levels of the `[[Prototype]]` chain (called _shadowing_), to avoid brittle syntax.
 
-Means to let some object (XYZ) provide a delegation (to Task) for property or method references if they are not found on the object (XYZ)
+Means to let some object (`XYZ`) provide a delegation (to `Task`) for property or method references if they are not found on the object (`XYZ`)
 
 ```js
 Task = {
