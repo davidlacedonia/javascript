@@ -19,6 +19,10 @@ The result of the constructor form of value creation is an object wrapper around
 
 Primitive values don't have properties or methods, so to access `.length` or `.toString()` you need an object wrapper around the value. Thankfully, JS will automatically **box** (aka wrap) the primitive value to fulfill such accesses.
 
+```js
+(23).toString();
+```
+
 ## Unboxing
 
 If you have an object wrapper and you want to get the underlying primitive value out, you can use the `valueOf()` method.
@@ -32,18 +36,22 @@ Unboxing can also happen implicitly, when using an object wrapper value in a way
 
 ## Natives as constructors
 
-There is no logical reason to use the constucted form on objects, arrays, etc.
+There is no logical reason to use the constructed form on objects, arrays, etc.
 
 The `Date(..)` and `Error(..)` native constructors are much more useful than the other natives, because there is no literal form for either.
 
 The main reason you'd want to create an error object is that it captures the currenct execution stack context into the object. (typically used with `throw`).
 
+```js
+new Error("something went wrong");
+```
+
 ## Symbol
 
-Symbols are special 'unique' (not strictly guaranteed) values that can be used as properties objects with little fear of any collision. Primarily designed for special built-in behaviors of ES6.
+Symbols are special _unique_ (not strictly guaranteed) values that can be used as properties objects with little fear of any collision. Primarily designed for special built-in behaviors of ES6.
 Can be used as property names, but you cannot set or access the actual value of a symbol.
 
-There are several predefined symbols, such as `Symbol.create`, `Symbol.iterator`, etc.
+There are several predefined symbols, such as `Symbol.create`, `Symbol.iterator`, `Symbol.toPrimitive`, etc.
 And they can be created.
 
 ```js
@@ -53,6 +61,12 @@ a[mysym] = "foobar";
 ```
 
 Using them for private or special properties is likely their primary use case.
+
+```js
+let a = {};
+a[Symbol.toPrimitive] = () => "hello";
+a + "world"; // hello world
+```
 
 ## Native prototypes
 
