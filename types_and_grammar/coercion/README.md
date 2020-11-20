@@ -1,6 +1,6 @@
 # Coercion
 
-Converting a value from one type to another is often called 'type casting' when done explicitly, and 'coercion' when done implicitly (forced by the rules of how a value is used).
+Converting a value from one type to another is often called 'type casting' when done explicitly, and 'coercion' when done implicitly (_forced by the rules of how a value is used_).
 
 Type coercion is a runtime conversion for dynamically typed languages.
 
@@ -9,14 +9,25 @@ Type coercion is a runtime conversion for dynamically typed languages.
 For regular objects (unless you specifiy your own) the default `toString()` will return the internal `[[Class]]`, like for instance `[object Object]`.
 Arrays have an overriden default toString() that concatenates all of its values.
 
+```js
+let a = {};
+let b = [1, 2];
+a.toString(); // [object Object]
+b.toString(); // "1,2"
+```
+
 ## toNumber
 
 `true` becomes `1` and `false` becomes `0`. `undefined` becomes `NaN`, but `null` becomes `0`.
-Objects will first ve converted to their primitive value equivalent, and the resulting value (if a primitive but not already a number) is coerced to a number.
+Objects will first be converted to their primitive value equivalent, and the resulting value (if a primitive but not already a number) is coerced to a number.
 
 ## toBoolean
 
 JS has actual keywords `true` and `false`. It's a common misconception that the values `1` and `0` are identical to `true`/`false`. You can coerce `1` to `true`, or `0` to `false` (and vice versa).
+
+```js
+1 == true; // true
+```
 
 ### Falsy values
 
@@ -70,11 +81,11 @@ parseInt(b); // 42
 
 Parsing a numeric value out of a string is _tolerant_ of non-numeric characters, it just stops parsing left-to-right when encountered. Whereas coercion is not tolerant and fails, resulting in the `NaN` value.
 
-When parsing (`parseInt`), if you pass a non-string, the value you pass will automatically be coerced to a `string` first.
+When parsing `parseInt`, if you pass a non-string, the value you pass will automatically be coerced to a `string` first.
 
 ### Boolean
 
-`Boolean(..)` is a en explict way of forcing the 'ToBoolean' coercion.
+`Boolean(..)` is an explict way of forcing the 'ToBoolean' coercion.
 Just like the `+` unary coerces a value to a number, the unary `!` negate operator explictly coerces a value to a `boolean`. The most common way is to use double-negate operator `!!`, to flip the parity back to the original.
 
 Any of these `ToBoolean` coercions would happen implictly without the `Boolean(..)` or `!!`, if used in a boolean context such as an `if (..)`.
@@ -89,11 +100,10 @@ _Goal_: reduce verbosity, boilerplate, and/or unnecessery implementation details
 
 The `+` algorithm will concatenate if either operand is either already a `string`, or if the following steps produce a `string` representation. It first calls the `ToPrimitive` abstract operation on the value, which then calls the `[[DefaultValue]]` algorithm.
 The `valueOf()` operation on the `array` will fail to produce a simple primitive, so it then falls to a `toString()` representation.
-If either operand to `+` is a `string`, the operation will be `string` concatenation. Otherwise, it's always numeric addition.
 
 The `-` is defined only for numeric substraction, so `a - 0` forces `a`'s values to be coerced to a `number`. While far less common, `a * 1` or `a / 1` would accomplish the same result, as those operators are also only defined for numeric operations.
 
-### \* -> Numbers
+### Boolean
 
 What sort of expressions require/force (implicitly) a `boolean` coercion?
 
@@ -120,8 +130,6 @@ c && b; // null
 ```
 
 Both performs and `boolean` test on the first operand. If the operand is not already `boolean`, a normal `ToBoolean` coercion occurs. For the `||` if `true`, the expression results in the value of the first operand. If the test is `false`, results in the second operand. Inversely, for the `&&` operand, if `true`, results in the value of the second operand. And if `false`, results in the value of the first operand.
-
-_note: explicit coercion of a `symbol` to a `string` is allowed, but implicit coercion of the same is disallowed and throws an error._
 
 ## Lose equals == vs strict equals ===
 
@@ -193,7 +201,7 @@ If either side of the comparision can have `[]`, `''`, or `0` values, seriously 
 
 ## Abstract relational comparision (<, >, <=, =>)
 
-The algorithm first calls ToPrimitive coercion on both values, and if the return result of either call is not a `string`, then both values are coerced to `number` values using the `ToNumber` operation rules, and compared numerically.
+The algorithm first calls `ToPrimitive` coercion on both values, and if the return result of either call is not a `string`, then both values are coerced to `number` values using the `ToNumber` operation rules, and compared numerically.
 
 ```js
 var a = [42];
