@@ -14,7 +14,7 @@ a; // 43
 a; // 44
 ```
 
-When `++a` is used in the prefix position, its side effect happens _before_ the value is returned from the expression, rather than after as with `a++`.
+When `++a` is used in the prefix position, its side effect happens _before_ the value is returned from the expression, rather than after, as with `a++`.
 
 ## Contextual rules
 
@@ -109,7 +109,7 @@ This is processed by first evaluating `c = 42`, then `b = ...`, and finally `a =
 
 ## ASI
 
-Automatic Semicolon Insertion is when JavaScript assumes a `;` in certain places in your JS program even if yoy didn't put one there.
+Automatic Semicolon Insertion is when JavaScript assumes a `;` in certain places in your JS program even if you didn't put one there.
 
 It's important to note that ASI will only take effect in the presence of a newline (aka line break). Semicolons are not inserted in the middle of a line. Only if there's nothing but a whitespace between the end of some statement and that line's newline/line break.
 
@@ -132,7 +132,7 @@ Function parameter names cannot be duplicated.
 function bar (a, b, a) { ... } // Error
 ```
 
-An object literal having more than one property of the same name
+An object literals cannot have more than one property of the same name
 
 ```js
 var a = {
