@@ -12,7 +12,7 @@ An event loop, breaks its work into tasks and executes them in serial, disallowi
 
 ## Run to completion
 
-Because of JavaScript's single-threading, the code inside functions is atomic, which means that once a function starts running, the entirety of its code will finish before any of the code in another function can run, or vice versa.
+Because of JavaScript's single-threading, the code inside functions is **atomic**, which means that once a function starts running, the entirety of its code will finish before any of the code in another function can run, or vice versa.
 
 ## Inversion of control
 
@@ -30,13 +30,17 @@ If you don't explicitly resolve with a value either way, the value is `undefined
 
 ## Swallowing any errors/exceptions
 
-If at any point in the creation of a Promise, or in the observation of its resolution, a JS exception error occurs, such as a `TypeError` or `ReferenceError`, that exception will be caught, and it will force the Promise in question to become rejected.
+If at any point in the creation of a `Promise`, or in the observation of its resolution, a JS exception error occurs, such as a `TypeError` or `ReferenceError`, that exception will be caught, and it will force the Promise in question to become rejected.
 
 ## Trustable promise
 
 If you pass an immediate, non-Promise, non-thenable value to `Promise.resolve(..)`. you get a promise that's fulfilled with that value.
 
-`Promise.resolve(..)` will accept any thenable, and will unwrap it to its non-thenable value. But you get back from `Promise.resolve(..)` is a real, genuine Promise in its place, **one that you can trust**. If what you passed in is already a genuione Promise, you just get it right back.
+`Promise.resolve(..)` will accept any thenable, and will unwrap it to its non-thenable value. What you get back from `Promise.resolve(..)` is a real, genuine Promise in its place, **one that you can trust**. If what you passed in is already a genuine Promise, you just get it right back.
+
+```js
+Promise.resolve("success").then((msg) => console.log(msg)); // 'success'
+```
 
 ## Trust built
 
