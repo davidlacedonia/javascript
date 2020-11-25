@@ -38,11 +38,15 @@ Both creates a Promise as their return value. The resolution of that promise is 
 
 For `Promise.all([..])` all the promises you pass in must fulfill for the returned promise to fulfill. If any promise is rejected, the main returned promise is immediately rejected too. For fulfillment you receive an `array` of all the passed in promises fulfillment values.
 
-For `Promise.race([..])` only the first promise to resolve (fulfillment or rejection) wins, and whatever that resolution is becomes the resolution of the returned promise (latch Pattern).
+For `Promise.race([..])` only the first promise to resolve (fulfillment or rejection) wins, and whatever that resolution is, becomes the resolution of the returned promise (latch Pattern).
 
 ## Duck typing
 
 The way to recognize a Promise (or something that behaves like a Promise) would be to define something called a "thenable" as any object or function which has a `then(..)` method on it. It is assumed that any such values is a Promise-conforming thenable.
+
+```js
+if (lib.then) // ...
+```
 
 ## Promise trust
 
@@ -52,7 +56,7 @@ When you call `then(..)` on a Promise, even if that Promise was already resolved
 
 ### Calling to late
 
-A Promise's `then(..)` registered observation callbacks are automatically scheduled when either `resolve(..)` or `reject(..)` are called by the Promise creation capability. Those scheduled callbacks will predictably be fires at the next asynchronoys moment.
+A Promise's `then(..)` registered observation callbacks are automatically scheduled when either `resolve(..)` or `reject(..)` are called by the Promise creation capability. Those scheduled callbacks will predictably be fired at the next asynchronoys moment.
 
 When a Promise is resolved, all `then(..)` registered callbacks on it will be called, in order, immediately at the next asyncronous opportunity.
 
@@ -71,7 +75,7 @@ p.then(function () {
 
 ### Scheduling quirks
 
-Never rely on anything about the ordering/scheduling of callbacks across promises. In fact, a good practice is not to code in such a way where the ordering of multiple callbacks matter at all. _(because, for example, if a then has anothe promise inside, other thenables at the same level can be fired first)_
+Never rely on anything about the ordering/scheduling of callbacks across promises. In fact, a good practice is not to code in such a way where the ordering of multiple callbacks matter at all. _(because, for example, if a then has another promise inside, other thenables at the same level can be fired first)_
 
 ### Never calling the callback
 
@@ -98,4 +102,4 @@ Once you create a Promise and register a fulfillment and/or rejection handler fo
 
 More work to do, more guards to protect, means that Promises are slower compared to naked, untrusted callbacks, but it's worth it.
 
-Promises don't get rid o callbacks, they just redirect the orchestration of those callbacks to a turstable intermediary mechanism that sits between us and another utility.
+Promises don't get rid o callbacks, they just redirect the orchestration of those callbacks to a trustable intermediary mechanism that sits between us and another utility.
