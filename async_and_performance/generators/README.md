@@ -76,7 +76,7 @@ Each time you construct an _iterator_, you are implictly constructing an instanc
 
 ## Generating values
 
-An _iterator_ is a well-defined interface for stepping through a series of values from a producer. The JS interface for iteratores, is to call `next()` each time you want the next value from the producer.
+An _iterator_ is a well-defined interface for stepping through a series of values from a producer. The JS interface for iterators, is to call `next()` each time you want the next value from the producer.
 
 The `next()` call returns an object with two properties: `done` is a `boolean` value signaling the iterator's complete status; `value` holds the iteration value.
 
@@ -92,11 +92,12 @@ var a = [1, 3, 5, 7];
 for (var v of a) {
   console.log(v);
 }
+// 1 3 5 7
 ```
 
 ### Iterables
 
-_Iterable_ is an `object` that **contains** an _iterator_ that can iterate over its values.
+_Iterable_ is an `object` that _contains_ an _iterator_ that can iterate over its values.
 
 The way to retrieve an _iterator_ from an _iterable_ is that the _iterable_ must have a function on it, with the name being the special ES6 symbol value `Symbol.iterator`. When this function is called, it returns an _iterator_.
 
@@ -112,7 +113,7 @@ it.next().value; // 5
 
 ## Generator iterator
 
-`for (var v of something()) { .. }`: we didn't just reference `something` as a value, but instead called the `*something()` generator to get its _iterator_ for the `for..of` loop to use. `something()` call produces an iterator, but the `for..of` loop wants an _terable_, so the generator's _iterator_ algo has a `Symbol.iterator` function on it.
+`for (var v of something()) { .. }`: we didn't just reference `something` as a value, but instead called the `*something()` generator to get its _iterator_ for the `for..of` loop to use. `something()` call produces an iterator, but the `for..of` loop wants an _terable_, so the generator's _iterator_ also has a `Symbol.iterator` function on it.
 
 ## Stopping the generator
 
@@ -135,7 +136,7 @@ function* something() {
 var it = something();
 for (var v of it) {
   if (v > 500) {
-    conosle.log(it.return("hello world").value);
+    console.log(it.return("hello world").value);
   }
 }
 // 1 9 33 105 321 969
@@ -171,7 +172,7 @@ The awesome part is that this `yield` pausing also allows the generator to `catc
 
 ## Generators + promises
 
-The natural way to get the most out of Promises and generators is to `yield` a Promise, and wire that Promise to control the generator's iterator.
+The natural way to get the most out of promises and generators is to `yield` a promise, and wire that promise to control the generator's iterator.
 
 ```js
 function foo(x, y) {
