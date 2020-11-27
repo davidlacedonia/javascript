@@ -4,7 +4,7 @@ User perception of performance is every bit -- if not more! -- as important as a
 
 ## Web workers
 
-JavaScript does not currently have any features that support threaded execution. But an environment like your browser can easily provice multiple instances of the JavaScript engine, eachon its own thread, and let you run a different program in each thread. Each of those separate threaded pieces of your program is called a **Web worker**. This type of parallelism is called "task parallelism", as the emphasis is on splitting up cunks of your program to run in parallel.
+JavaScript does not currently have any features that support threaded execution. But an environment like your browser can easily provide multiple instances of the JavaScript engine, each on its own thread, and let you run a different program in each thread. Each of those separate threaded pieces of your program is called a **Web worker**. This type of parallelism is called "task parallelism", as the emphasis is on splitting up chunks of your program to run in parallel.
 
 ```js
 w1 = new Worker("http://..");
@@ -34,7 +34,7 @@ Some common uses for web workers:
 
 ## Data transfer
 
-In the early days of Workers, serializing all data to a string value was the only option. Thankfully, if you pass an object, so-called **"Structured cloning algorigthm"**, is used to copy/duplicate the object on the other side.
+In the early days of Workers, serializing all data to a string value was the only option. Thankfully, if you pass an object, so-called **"Structured cloning algorithm"**, is used to copy/duplicate the object on the other side.
 
 An even better option, is **"Transferable Objects"**, in which the object's "ownership" is transferred, but the data itself is not moved. Any data structure that implements the Transferable interface will automatically be transferred this way.
 
