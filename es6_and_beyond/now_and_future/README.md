@@ -14,7 +14,7 @@ For example:
 ```js
 if (!Object.is) {
   Object.is = function () {
-    //...
+    // ...
   };
 }
 ```

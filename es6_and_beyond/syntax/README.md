@@ -22,7 +22,7 @@ Unlike traditional `var` declared variables, which are attached to the entire en
   console.log(b); // ReferenceError!
 
   var a;
-  var b;
+  let b;
 }
 ```
 
@@ -41,7 +41,7 @@ It's a variable that's read-only after its intial value is set.
   const a = 2;
   console.log(a); // 2
 
-  a = 3; // TypeError!
+  a = 3; // TypeError
 }
 ```
 
@@ -58,7 +58,7 @@ The value is not frozen, just the assignment of it. If the value is complex, suc
 }
 ```
 
-The `a` variable doesn't actually hold a _constant_ array, it holds a _constant_ reference to the array; the array itself is ffreely mutable.
+The `a` variable doesn't actually hold a _constant_ array, it holds a _constant_ reference to the array, the array itself is freely mutable.
 
 ## Spread / rest
 
@@ -76,7 +76,7 @@ var b = [1, ...a, 5];
 
 In this usage, `...` is basically replacing `concat(..)`.
 
-The other common usage of `...` can be seen as almost the opposite; instead of spreading a value out, the `...` gathers a set of values together into an array.
+The other common usage of `...` can be seen as almost the opposite, instead of spreading a value out, the `...` gathers a set of values together into an array.
 
 ```js
 function foo(x, y, ...z) {
@@ -84,17 +84,17 @@ function foo(x, y, ...z) {
 }
 ```
 
-The `...z` in this snippet is essentially saying: "gather the _rest_ of the arguments (if any) into an array called `z`."
+The `...z` in this snippet is essentially saying: "gather the _rest_ of the arguments (if any) into an array called `z`".
 
 ## Default parameter values
 
-You can only omit arguments on the end (rigthhand side) by simply passing fewer arguements than "expected", but you cannot omit arguments in the middle or at the beginning of the arguments list. It's just not possible.
+You can only omit arguments on the end (rigthhand side) by simply passing fewer arguments than "expected", but you cannot omit arguments in the middle or at the beginning of the arguments list. It's just not possible.
 
-But you can pass `undefined`, '_undefined_' means missing.
+But you can pass `undefined`, which means missing.
 
 ```js
 function foo(x = 11, y = 31) {
-  //...
+  // ...
 }
 ```
 
@@ -226,7 +226,7 @@ var o = {
 
 The second function here provides a super convenient lexical identifier that will always point to the function itself, giving us the perfect reference for recursion, event binding/unbinding, etc.
 
-Concise methods imply anonymus function expressions. They are short and sweet, and nice convenience. But you should only use them if you're never going to need them to do recursion or event binding/unbinding.
+Concise methods imply anonymous function expressions. They are short and sweet, and nice convenience. But you should only use them if you're never going to need them to do recursion or event binding/unbinding.
 
 ## Computed property names
 
@@ -360,4 +360,3 @@ The benefit here is that `EVT_LOGIN` holds a value that cannot be duplicated by 
 
 If a symbol is used as a property/key of an object, it's stored in an special way that the property will not show up in a normal enumeration of the object's properties.
 You can always seet it in the `Object.getOwnPropertySymbols(..)` enumeration.
-
