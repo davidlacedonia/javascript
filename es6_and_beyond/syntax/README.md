@@ -244,7 +244,7 @@ Any valid expression can appear inside the `[ .. ]` that sits in the property na
 
 ## Setting [[Prototype]]
 
-Sometimes it will be helpful to assign the `[[Propertype]]` of an object at the same time you are declaring its object literal.
+Sometimes it will be helpful to assign the `[[ProtoType]]` of an object at the same time you are declaring its object literal.
 
 ```js
 var o2 = {
@@ -252,7 +252,7 @@ var o2 = {
 };
 ```
 
-For setting the `[[Prototype]]` of an existing object, you can use the ES6 utility `Object.setPrototypeOf(..)`.
+For setting the `[[ProtoType]]` of an existing object, you can use the ES6 utility `Object.setPrototypeOf(..)`.
 
 ## Object super
 
@@ -315,9 +315,9 @@ Inside arrow functions, the `this` binding is not dynamic, but is instead lexica
 
 ## for .. of Loops
 
-ES6 adds a for..of loop, which loops over the set of values produced by an _iterator_.
+ES6 adds a `for..of` loop, which loops over the set of values produced by an _iterator_.
 
-The value you loop over with `for..of` mus be an _iterable_, or it must be a value which can be coerced/boxed to an object that is an iterable. An iterable is simply an object that is able to produce an iterator, which the loop then uses.
+The value you loop over with `for..of` must be an _iterable_, or it must be a value which can be coerced/boxed to an object that is an iterable. An iterable is simply an object that is able to produce an iterator, which the loop then uses.
 
 ```js
 var a = ["a", "b", "c", "d", "e"];
@@ -333,7 +333,20 @@ for (var val of a) {
 
 `for..in` loops over the keys/indexes in the `a` array, while `for..of` loops over the values in `a`.
 
-`for..of` loops can be prematurely stopped, just like other loops, with `break`, `continue`, `return`, and thrown exceptions. In any ot these cases, the iterator's `return(..)` function is automatically called (if one exists) to let the itetor perform clenaup tasks, if necessary.
+`for..of` loops can be prematurely stopped, just like other loops, with `break`, `continue`, `return`, and throw exceptions. In any ot these cases, the iterator's `return(..)` function is automatically called (if one exists) to let the itetor perform clenaup tasks, if necessary.
+
+```js
+let arr = [1, 2, 3, 4, 5];
+for (let value of arr) {
+  console.log(value);
+
+  if (value === 3) {
+    return () => {
+      console.log("cleaning");
+    };
+  }
+}
+```
 
 ## Symbol
 
@@ -346,9 +359,9 @@ typeof sym; // "symbol"
 
 The description, if provided is solely used for the stringification representation of the symbol.
 
-The internal value of a symbol itself -- referred to as its `name`-- is hidden from the code and cannot be obtained. You can think of this symbol value as an automatically generates, unique string value.
+The internal value of a symbol itself -- referred to as its `name`-- is hidden from the code and cannot be obtained. You can think of this symbol value as an automatically generated, unique string value.
 
-The main point of a symbol is to create a string-like value that can't collide with any other value. So for example, consider using a sumbol as a constant representing an event name.
+The main point of a symbol is to create a string-like value that can't collide with any other value. So for example, consider using a symbol as a constant representing an event name.
 
 ```js
 const EVT_LOGIN = Symbol("event.login");
