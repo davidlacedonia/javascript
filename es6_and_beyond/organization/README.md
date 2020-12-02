@@ -8,17 +8,17 @@ Iterators are a way of organizing ordered, sequential, pull-based consumption of
 
 **Required**:
 
-`next()`: (method) retrevies next `IteratorResult`
+`next()`: (_method_) retrevies next `IteratorResult`
 
 **Optional**:
 
-`return()`: (method) stops iterator and returns `IteratorResult`
-`throw()`: (method) signals error and returns `IteratorResult`
+`return()`: (_method_) stops iterator and returns `IteratorResult`
+`throw()`: (_method_) signals error and returns `IteratorResult`
 
 **IteratorResult**:
 
-`value`: (propert), current iteration value or final return value
-`done`: (property) boolean, indicates completion status
+`value`: (_propert_), current iteration value or final return value
+`done`: (_property_) boolean, indicates completion status
 
 By general convention, calling `next(..)` on an iterator that's already been exhausted is not an error, but will simply continue to return the result `{ value: undefined, done: true}`.
 
@@ -27,7 +27,7 @@ By general convention, calling `next(..)` on an iterator that's already been exh
 `return(..)` is defined as sending a signal to an iterator that the consuming code is complete and will not be pulling any more values from it. The signal can be used to notify the producer to perform any cleanup it may need to do, such as releasing/closing network, database, or file handle resources, etc.
 
 `throw(..)` is used to signal an exception/error to an iterator. It does not necessarily imply a complete stop of the iterator as `return(..)` generally does.
-`throw(..)` actually injects a thrown exception into the generetor's paused execition context, which can be caught with a `tru..catch`.
+`throw(..)` actually injects a thrown exception into the generetor's paused execition context, which can be caught with a `try..catch`.
 
 By general convention, an iterator should not produce any more results after having called `return(..)` or `throw(..)`.
 
@@ -70,7 +70,7 @@ function* foo() {
 }
 ```
 
-The major differce is that executing a generator, like `foo(5, 10)` doesn't actually run the code in the generator. Instead, it produces an iterator which will control the generator to execute its code.
+The major difference is that executing a generator, like `foo(5, 10)` doesn't actually run the code in the generator. Instead, it produces an iterator which will control the generator to execute its code.
 
 ### yield
 
@@ -209,7 +209,7 @@ function foo() { .. }
 export { foo as bar };
 ```
 
-When you export something, you're exporting a binding to that thing. That means that if you change the value inside your module of a variable yoy already exported a binding to, even if it's already been imported, the imported binding will resolve to the current value.
+When you export something, you're exporting a binding to that thing. That means that if you change the value inside your module of a variable you already exported a binding to, even if it's already been imported, the imported binding will resolve to the current value.
 
 ```js
 function foo(..) {
@@ -219,7 +219,7 @@ function foo(..) {
 export default foo;
 ```
 
-You are exporting a binding to the function expression value at that moment, _not_ to the identifier foo.
+Here you are exporting a binding to the function expression value at that moment, _not_ to the identifier foo.
 
 ```js
 function foo(..) {
@@ -276,7 +276,7 @@ import * as foo from "foo";
 If the module you're importing with `* as ..` has a default export, it is named `default` in the namespace specified.
 All imported bindings are immutable and/or read-only.
 
-Declarations that occur as a result of an `import` are "hoisted"
+Declarations that occur as a result of an `import` are "_hoisted_".
 
 ```js
 foo();
@@ -303,7 +303,7 @@ class Foo {
 - `class` implies creating a (special) function of the name `Foo`.
 - `constructor(..)` identifies the signature, as well as its body contents.
 - Class methods use the same "concise method" syntax available to object literals.
-- Unlike object literals, there are no commas separating members in a class body, in fact, ther are not even allowed
+- Unlike object literals, there are no commas separating members in a class body, in fact, they are not even allowed
 
 The `Foo(..)` call _must_ be made with `new`.
 `class Foo` is not hoisted, so you must declare a `class` before you can instantiate it.
@@ -312,7 +312,7 @@ Another way of thinking about `class`, which I find more convenient, is as a _ma
 
 ### extends and super
 
-ES6 classes also have syntax sugar for establishing the `[[Prototype]]` delegation link between two function prototypes, using the class-oriented familiar terminology `extends`.
+ES6 classes also have syntax sugar for establishing the `[[Prototype]]` delegation link between two function prototypes, using the class-oriented familiar terminology `extend`.
 
 ```js
 class Bar extends Foo {
