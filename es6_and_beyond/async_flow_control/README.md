@@ -31,7 +31,7 @@ Any value that you are not already certain is a trustable Promise -- even if it 
 
 `Promise.reject(..)` creates an immediately rejected promise.
 
-`Promise.all([..])` reeturns a promise back which will be fulfilled if all the values fulfill, or reject immediately once the first of any of them rejects.
+`Promise.all([..])` reeturns a promise back which will be fulfilled if all the values fulfill, or reject immediately once the first, of any of them, rejects.
 
 `Promise.race([..])` waits only for either the first fulfillment or rejection.
 
@@ -51,7 +51,7 @@ m.get(x); // "foo"
 m.get(y); // "bar"
 ```
 
-You can't use the `[]` bracket access syntax for setting and retrieving values. Bug `get(..)` and `set(..)` work.
+You can't use the `[]` bracket access syntax for setting and retrieving values. But `get(..)` and `set(..)` work.
 
 To delete an element use the `delete(..)` method.
 You can clear an entire map's content with `clear()`.
@@ -77,6 +77,10 @@ To determine if a value exists in a map, use the `includes(..)` method.
 
 To get the list of keys, use `keys()`, which returns an iterator over the keys in the map.
 To determine if a map has a given key, use `has(..)`.
+
+```js
+map.has(key);
+```
 
 ## WeakMaps
 
@@ -110,7 +114,8 @@ var x = { id: 1 },
 
 s.add(x).add(y);
 
-s.size(); // 2
+s.size; // 2
+s.has(y); // true
 s.clear();
 s.size(); // 0
 ```
