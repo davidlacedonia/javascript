@@ -36,6 +36,10 @@ You should never intentionally work with empty slots, as it will almost certainl
 
 `Array.from(..)` second argument, if provided, is a mapping callback. It also takes a third argument, that if set will specify the `this` binding for the callback passed as the second argument.
 
+```js
+Array.from([1, 2, 3], (value) => value * 100); // [100, 200, 300]
+```
+
 ### copyWithin
 
 `copyWithin(..)` copies a portion of an array to another location in the same array, overwriting whatever was there before.
@@ -51,14 +55,14 @@ Copying simply stops when the end of the array is reached.
 Filling an existing array entirely (or partially) with a specified value is natively supported as of ES6 with the `Array#fill(..)` method.
 
 ```js
-Array(4).fill(undefined);
+Array(4).fill(undefined); // [undefined, undefined, undefined, undefined]
 ```
 
 Optionally takes _start_ and _end_ parameters which indicate a subset portion of the array to fill.
 
 ### find(..)
 
-Works basically the same as `some(..)`, except that once the callback returns a `true`/truthy value, the actual array values is returned.
+Works basically the same as `some(..)`, except that once the callback returns a `true`/truthy value, the actual array value is returned.
 
 ```js
 a.find(function matcher(v) {
@@ -68,7 +72,7 @@ a.find(function matcher(v) {
 
 ### findIndex(..)
 
-Use `indexOf(..)` if you need the index of a strict match, or `findIndex(..)` if you need th eindex of a more customized match.
+Use `indexOf(..)` if you need the index of a strict match, or `findIndex(..)` if you need the index of a more customized match.
 
 ```js
 points.findIndex(function matcher(point) {
@@ -80,7 +84,7 @@ points.findIndex(function matcher(point) {
 
 ### Object.is(..)
 
-The `Object.is(..)` static function makes a value comparisons in an eve rmore strict fashion than the `===` comparison. In cases where you are trying to strictly identify a `NaN` or `-0` value, `Object.is(..)` is now the preferred option.
+The `Object.is(..)` static function makes a value comparisons in an even more strict fashion than the `===` comparison. In cases where you are trying to strictly identify a `NaN` or `-0` value, `Object.is(..)` is now the preferred option.
 
 ```js
 Object.is(x, x);
@@ -104,7 +108,7 @@ Non-enumerable properties, and non-owned properties are all excluded from the as
 
 ### Number.isNaN(..)
 
-Global `isNan(..)` utility has been broken since its inception, in that it returns `true` for things that are not numbers, not just for the actual `NaN` value, because it coerces the argument to a number type. ES6 addas a fixed utility `Number.isNaN(..)`.
+Global `isNaN(..)` utility has been broken since its inception, in that it returns `true` for things that are not numbers, not just for the actual `NaN` value, because it coerces the argument to a number type. ES6 adds a fixed utility `Number.isNaN(..)`.
 
 ### Number.isFinite(..)
 
@@ -121,7 +125,7 @@ Number.isFinite("42"); // false
 Number.isInteger(4.2); // false
 ```
 
-ES6 also degines a `Number.isSafeInteger(..)` utiliy, which checks to make sure the value is both an integer and within the range of `Number.MIN_SAFE)INTEGER`-`Number.MAX_SAFE_INTEGER`.
+ES6 also degines a `Number.isSafeInteger(..)` utiliy, which checks to make sure the value is both an integer and within the range of `Number.MIN_SAFE_INTEGER`-`Number.MAX_SAFE_INTEGER`.
 
 ## String
 
