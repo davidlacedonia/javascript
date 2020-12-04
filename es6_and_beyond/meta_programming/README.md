@@ -2,7 +2,7 @@
 
 Meta programming is programming where the operation targets the behavior of the program itself.
 
-Meta programming focuses on one or more of the following: code inspecting itself, code modifying itself, or code modifying defualt language behavior so other code is affected.
+Meta programming focuses on one or more of the following: code inspecting itself, code modifying itself, or code modifying default language behavior so other code is affected.
 
 The goal of meta programming is to leverage the language's own intrinsic capabilities to make the rest of your code more descriptive, expressive, and/or flexible.
 
@@ -19,8 +19,10 @@ Had we given the function a lexical name like `abc = function def() { .. }`, the
 Here are other forms which will infer a name in ES6:
 
 ```js
-baz: () => { .. }, // baz
-bam: function () { ..}, // bam
+var obj = {
+  baz: () => { .. }, // baz
+  bam: function () { .. }, // bam
+};
 
 export default function() { .. } // default
 ```
@@ -45,9 +47,9 @@ arr[Symbol.iterator] = function() { .. }
 
 ### Symbol.toString and Symbol.hasInstance
 
-One of the most common meta programming tasks is to introspeect on a value to find out what _kind_ it is.
+One of the most common meta programming tasks is to introspect on a value to find out what _kind_ it is.
 
-The `@@toStringTag` symbol on the prototype specifies a string value to use in the `[object ___]` stringification.
+The `@@toStringTag` symbol on the prototype specifies a string value to use in the `[object _]` stringification.
 
 The `@@hasInstance` symbol is a method on the constructor function which receives the instance object value and lets you decide by returning `true` or `false` if the value should be considered an instance or not.
 
@@ -90,7 +92,7 @@ We "forward" the operation onto `obj` via `Reflect.get(..)`.
 
 Here is a list of handlers you can define on a proxy for a _target_ object/function, and how/when they are triggered:
 
-`get(..)`, `set(..)`, `deleteProperty(..)`, `apply(..)`, `construct(..)`, `getOwnPropertyDescriptor(..)`, `defineProperty(..)`, `getPrototypeOf(..)`, `setPrototypeOf(..)`, `preventExtensions(..)`, `isEctensible(..)`, `ownKeys(..)`, `enumarate(..)`, `has(..)`.
+`get(..)`, `set(..)`, `deleteProperty(..)`, `apply(..)`, `construct(..)`, `getOwnPropertyDescriptor(..)`, `defineProperty(..)`, `getPrototypeOf(..)`, `setPrototypeOf(..)`, `preventExtensions(..)`, `isExtensible(..)`, `ownKeys(..)`, `enumerate(..)`, `has(..)`.
 
 ## Reflect API
 
@@ -121,7 +123,7 @@ By contrast, `Reflect.enumarate(..)`, `Object.keys(..)`, `for..in`, and `JSON.st
 
 It's a test that you run to determine if a feature is available or not. Is a meta programming technique, to test the environment your program runs in to then determine how your program should behave.
 
-The most common is checking for the existance of an API and if it's not present, defining a polifyll.
+The most common is checking for the existance of an API and if it's not present, defining a polyfill.
 
 ```js
 if (!Number.isNaN) {
