@@ -30,4 +30,4 @@ Libraries often create a single variable declaration, often an object, in the gl
 
 ## Module management
 
-Another option is the module approach, in this way no libraries ever add any identifiers to the global scope, but are instead required to have their identifiers be explicitly imported into another specific scope through usage of the dependency manager's varios mechanisms.
+Another option is the module approach, in this way no libraries ever add any identifiers to the global scope, but are instead required to have their identifiers be explicitly imported into another specific scope through usage of the dependency manager's various mechanisms.

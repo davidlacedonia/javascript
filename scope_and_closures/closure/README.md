@@ -10,7 +10,7 @@ Whatever facility we use to transport an inner function outside of its lexical s
 
 ```js
 function foo() {
-  var inner = "inner";
+  var protectedValue = "inner";
   function bar() {
     console.log(protectedValue);
   }
