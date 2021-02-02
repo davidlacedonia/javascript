@@ -1,0 +1,25 @@
+# Semantics
+
+- html
+- head
+- body
+- title
+- link
+- section
+- header
+- section
+- p
+- img
+- div
+- h(n)
+- span
+- nav
+- ul
+- ol
+- li
+- a
+- main
+- form
+- input
+- button
+- footer
